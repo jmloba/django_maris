@@ -17,9 +17,8 @@ SECRET_KEY =  config('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG')
-
-ALLOWED_HOSTS = ['django-render-maris-app.onrender.com']
+DEBUG =config('DEBUG',cast=bool)
+ALLOWED_HOSTS =config("ALLOWED_HOSTS").split(",")
 
 
 # Application definition
@@ -88,12 +87,10 @@ DATABASES = {
         'USER':     config('DB_USER'),
         'PASSWORD': config('DB_PASSWORD'),
         'HOST': config('DB_HOST'),
-        'PORT':5432,
+        
     },    
 }
-
-# DATABASES["default"]=dj_database_url.parse("postgresql://django_maris_user:ZPrRCIgZziMkvuLUNqeMBCYVWPv4UiKb@dpg-ct8kdrt2ng1s739ml4cg-a.singapore-postgres.render.com/django_maris")
-
+DATABASES["default"] = dj_database_url.parse(config("DATABASE_URL"))
 
 
 # Password validation
