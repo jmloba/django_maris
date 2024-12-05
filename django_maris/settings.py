@@ -3,6 +3,7 @@
 from pathlib import Path
 import os
 from decouple import config
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -16,7 +17,7 @@ SECRET_KEY =  config('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -89,6 +90,9 @@ DATABASES = {
         'HOST': config('DB_HOST'),
     },    
 }
+
+# DATABASES["default"]=dj_database_url.parse("postgresql://django_maris_user:ZPrRCIgZziMkvuLUNqeMBCYVWPv4UiKb@dpg-ct8kdrt2ng1s739ml4cg-a.singapore-postgres.render.com/django_maris")
+
 
 
 # Password validation
