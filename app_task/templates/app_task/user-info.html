@@ -1,0 +1,17 @@
+
+<div class="user-info">
+  <div class="info">
+
+    <p>Username :<span> {{request.user}} 
+      {% if user_access.supervisor%}
+      <small>
+        Supervisor
+      </small>
+      {% endif%}
+
+    </span></p>  
+    
+  </div>
+
+
+</div>

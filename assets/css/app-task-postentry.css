@@ -1,0 +1,82 @@
+#Task-entry-posting{
+  background-color:rgba(165, 42, 42, 0.221) ;
+  margin :0 10px;
+  margin-top :3rem;
+}
+
+.table-container-wrapper{
+  margin :0px 0px;
+  padding : 0px;
+}
+.table__header{
+  color :blue;
+  font-size: 20px;
+  font-weight: 700;
+}
+.body-area{
+  margin : 0; 
+}
+.table-wrapper{
+  background-color: rgba(165, 42, 42, 0);
+}
+form{
+  background-color: rgba(255, 255, 255, 0);
+}
+#myordersTable_wrapper{
+  background-color: rgba(246, 247, 247, 0.139);
+  padding : 3px 3px; 
+  margin : 0;
+
+}
+#myordersTable_wrapper label{
+  font-size : 18px;
+}
+#dt-search-0,
+#dt-length-0{
+  background-color: aliceblue;
+}
+.dt-layout-cell.dt-end ,
+.dt-layout-cell.dt-start  {
+  background-color: rgba(208, 227, 244, 0);
+}
+.dt-paging.paging_full_numbers,
+.dt-info{
+  
+  color : black;
+  font-size: 16px;
+}
+
+.modal-content{
+  width: 40em;
+}
+
+.pop-up-data .item-data{
+  color : black;
+  background-color: rgba(199, 159, 159, 0.08);
+  display :block;
+  margin : 5%;
+  font-size : 18px;
+}
+.pop-up-data .item-data span{
+  color :blue
+
+}
+.pop-up-data .image-section {
+  display : flex;
+  justify-content: center;
+  align-items: center;
+  margin : auto;
+
+}
+.pop-up-data .image-container{
+  display : block;
+  justify-content: center;
+  align-items: center;
+}
+
+.pop-up-data .image-section img{
+  margin-top: 10px;
+  border-radius: 10px;
+  height : 15em;
+}
+

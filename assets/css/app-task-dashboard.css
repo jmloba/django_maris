@@ -1,0 +1,50 @@
+section{
+ 
+  /* background-color: rgba(223, 186, 141, 0.39); */
+  padding :2rem
+}
+.user-info{
+
+  height: 1rem;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+
+}
+.user-info .info{
+  background-color: aliceblue;
+  border-radius: 10px;
+  padding : 5px 10px;
+ 
+}
+
+.user-info p{
+  color : Black;
+}
+.user-info p span{
+  color : red
+}
+
+.user-info p span small{
+  color : Blue;
+}
+.body-area{
+  /* background-color: rgba(240, 247, 247, 0.527); */
+  margin: 2em;
+}
+
+.modal-body{
+  background-color: aliceblue;
+}
+.modal-body form{
+  background-color: rgba(2, 65, 175, 0.565);
+}
+#task-delete form{
+  width: 80%;
+}
+
+#task-delete .delete-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

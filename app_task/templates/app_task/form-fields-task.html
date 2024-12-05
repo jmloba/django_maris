@@ -1,0 +1,41 @@
+{% load crispy_forms_tags %}
+{% load static %}
+<div class="row">
+  <div class="col-lg-6 col-sm-12">
+    {{form.category|as_crispy_field}}
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12 col-sm-12">
+    {{form.task_desc|as_crispy_field}}    
+  </div>
+</div>
+<div class="row">
+  <div class="col-6">
+    {{form.date_from|as_crispy_field}}
+  </div>
+  <div class="col-6">
+    {{form.date_to|as_crispy_field}}
+  </div>
+</div>
+<div class="image-row">
+  <div class="image-container">
+    <div class="img-container-1">
+      <div class="file-entry"   id="myimage">
+        {{form.doc_img|as_crispy_field}}
+      </div>
+ 
+      <div class="image-view">
+        <img id="display_myimage" src="#" alt="your image" />
+      </div>
+    
+    </div>
+  </div>
+
+
+</div>
+
+
+
+
+

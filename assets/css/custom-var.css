@@ -1,0 +1,47 @@
+
+:root {
+  --color1 : #071952;
+  --color2 : #088395;
+  --color3 : #35A29F;
+  --color4 : #F2F7A1;
+ 
+ /* gold groups color */
+  --colorgold1 : #884A39;
+  --colorgold2 : #C38154;
+  --colorgold3 : #FFC26F;
+  --colorgold4 : #F9E0BB;
+
+  --border-gold   : #ac9e69;
+  --border-color  : var(--border-gold);
+  --border-color2 : var(--border-gold2);
+
+  --color-article-title     : rgb(20, 53, 144);
+  --card-background         : #F9E0BB;
+  --my-container-background : #eee3db;
+  --color-fb-blue           : rgba(53, 32, 237, 0.885);
+  --color-bloody-red        : #fd1f1f;
+  --color-go-signal         : #238f47;
+ 
+  --margin-top        : 0;
+  --margin-right      : 0;
+  --margin-left       : 0;
+  --margin-bottom     : 3em;
+
+  /* table */
+  --table-border-color      :  .5px solid #000005 ; 
+  --table-td-desc-background  : rgb(41, 7, 7);
+
+  --table-td-background     : rgba(241, 244, 246, 0.229);
+  --table-header-background : rgba(102, 135, 162, 0.963);
+  --table-box-shadow: 3px .3rem .3rem rgba(36, 27, 162, 0.401) ;
+  --table-box-shadow-orange: 3px .4rem .4rem rgba(237, 230, 100, 0.817) ;
+
+  /* --box-shadow1 :  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+
+  --box-shadow1       :  0 4px 8px 0 rgba(195, 186, 146, 0.95), 0 6px 20px 0 rgba(169, 201, 230, 0.664);
+
+  --webkit_box_shadow : 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+ --moz_box_shadow     :  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+ 
+ }

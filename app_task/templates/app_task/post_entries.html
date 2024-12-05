@@ -1,0 +1,115 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="Task-entry-posting" >
+
+  <div class="body-area">
+    <h4>Post Task Entry</h4>
+
+      <div class="table-container"  >   
+        {% include 'include/error-messeges.html'%}
+          <div class="table-container-wrapper">
+             <div class="table-wrapper">
+                <form action="" method="POST">
+                  {% csrf_token %}
+
+                  <table id='myordersTable' >
+                    <thead class="thead-light">
+                      <tr>
+                        <th >Checkbox</th>                  
+                        <th >User</th>                  
+                        <th >Document</th>       
+
+                        <th >category</th>
+                        <th >task_desc</th>
+                        <th >Date From</th>
+                        <th >Date To</th>
+                        <th >View</th>
+                      </tr>
+                    </thead>
+                    
+                    <tbody id="tbody" class="table-body">
+                      {% if data %}
+                        {% for item in data %}
+            
+                        <tr id="categ-id-{{item.id}}">
+                          {% if item.is_posted %}
+                          <td> 
+                            <div class="form-check">
+                              <input class="form-check-input form-check-posted" type="checkbox" checked="checked" value="{{item.id}}" name="boxes"  disabled
+                              >
+
+                            </div>
+                          </td>
+                          {% else %}
+                          <td> 
+                            <input class="form-check-input form-check-not-posted" type="checkbox"  value="{{item.id}}" name="boxes" >
+                          </td>               
+                          {% endif %}
+                          
+                          <td class="td-text td-text-name">{{item.user}}</td>                        
+                          {% if item.doc_img%}
+                            <td>
+                              <img src="{{item.doc_img.url}}" alt="pic" class="item-image-size-inlist" >
+                            </td>
+                          {% else %}
+                            <td>
+                              <img src="{% static 'image-default/default-image.png' %}" alt="pic" class="item-image-size-inlist" >
+                            
+                            </td>     
+                          {% endif %}               
+        
+                          <td class="td-text td-text-name">{{item.category}}</td>
+                          <td class="td-text-ref">{{item.task_desc}}</td>
+                          <td class="td-text-ref">{{item.date_from}}</td>
+                          <td class="td-text-ref">{{item.date_to}}</td>
+
+                          <td>view
+                            <a
+                            class="open-incident"
+                            href="{% url 'app_task:view-item' item.id %}"
+                            data-popup-url="{% url 'app_task:view-item' item.id%}"
+                            >{{ item.id }}</a>
+
+                        </td>                         
+                                          
+                        </tr>
+                        {% endfor %}
+                      {% endif %}
+
+                    </tbody>
+                    
+                  </table>
+
+                <input class="btn btn-primary" type="submit" value="Submit">
+
+                </form>
+            </div>
+            {% include "app_task/incident-modal.html" %}
+          </div>
+      </div>     
+
+  </div>
+</section>
+
+
+
+
+<link rel="stylesheet" href="{% static 'css/app-task-postentry.css' %}">
+
+<!-- To place above the incident-modal html -->
+<script>
+  $(document).on("click", ".open-incident", function (e) {
+    e.preventDefault();
+    var $popup = $("#popup");
+    var popup_url = $(this).data("popup-url");
+    $(".modal-body", $popup).load(popup_url, function () {
+      $popup.modal("show");
+    });
+  });
+</script>
+
+{% endblock %}
+

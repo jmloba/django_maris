@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body,
+html {
+  margin: 0;
+  padding : 0;
+  height: 100%;
+
+  /* background: #7abecc !important; */
+  
+  background : url(/assets/images/wallpaper.jpg) center /cover;
+  
+  background-repeat: no-repeat;
+  background-position:center;
+  background-size : cover;
+  background-attachment: fixed;
+
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  list-style: None;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+ul li{
+  list-style: None;
+}
+section{
+  margin-top: 1em;
+}
+
+img{
+  /* display : block; */
+  max-width : 100%;
+  height : auto;
+}
+
+
+.my-container{
+  background-color: var(--my-container-background);
+  
+  display:flex;
+  flex-wrap : wrap;
+  align-content : center;
+  gap: 1em;
+  /* flex-direction : row; */
+  justify-content:center ;
+  /* margin: auto; */
+  padding: 5px;
+  border: var(--border-gold);
+  border-style: solid ;
+  border-radius: 15px;
+  border-width: 6px;
+
+}
+
+.my-container-para{
+  margin-top : var(--margin-top);
+  margin-right:var(--margin-right);
+  margin-left :var(--margin-left);
+  margin-bottom:var(--margin-bottom);
+  
+ }
+
+ .user_card {
+  width: 350px;
+  margin-top: auto;
+  margin-bottom: auto;
+  background: #74cfbf;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+
+}
+
+.form_container {
+  margin-top: 20px;
+}
+
+#form-title{
+  color: #0d4a3b;
+  font-weight: 600;
+}
+#error-messages,
+#login-messages{
+  color:rgb(240, 45, 35);
+}
+.login_btn {
+  width: 100%;
+  background: #33ccff !important;
+  color: white !important;
+}
+.login_btn:focus {
+  box-shadow: none !important;
+  outline: 0px !important;
+}
+.login_container {
+  padding: 0 2rem;
+}
+.input-group-text {
+  background: #f7ba5b !important;
+  color: white !important;
+  border: 0 !important;
+  border-radius: 0.25rem 0 0 0.25rem !important;
+}
+.input_user,
+.input_pass:focus {
+  box-shadow: none !important;
+  outline: 0px !important;
+}
+
+#hello-message{
+  color : green;
+  margin-right : 20px;
+}
+#logout-button {
+  color : red;
+  margin-right : 20px
+
+}
+.btn-mybtn {
+  background-color:var(--color-fb-blue );
+  text-decoration: None;
+  display:inline-block;
+  padding : 5px 20px;
+  color : white; 
+  border-radius: 30px;
+}
+
+.btn-mybtn,
+.btn-mybtn a{
+  text-decoration: None;
+  color : white;
+  
+}
+
+.btn-mybtn:hover {
+  background-color: #13b990;
+  color : yellow;
+  font-weight :600;
+}
+
+.home-btn{
+  color:var(--color-fb-blue );
+  font-size: 20px;
+}
+
+
+.center {
+  margin: auto;
+  margin-top: 5px;
+  width: 50%;
+  border: 3px solid var(--border-gold);
+  padding: 10px;
+  width : auto;
+}
+
+.div-links{
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0px;
+}
+
+
+/* data */
+
+
+
+.data-view{
+  background-color: #f7ba5b;
+}
+
+
+.invoice-summary-div{
+  margin:1em 2em;
+}
+
+.body-area{
+  background-color: #ede3e292;
+  margin: 1rem .5rem;
+  
+  border-radius : 5px;
+  
+}
+.row-box{
+  margin-bottom : 5px;
+}
+#notary-entry .btn{ 
+  max-width         :  100%;
+
+}
+
+.modal-dialog .modal-header{
+  background-color  : #9e9991;
+  display           : flex;
+  justify-content   : space-evenly;
+}
+.alert{
+  color             :blue;
+}
+
+
+/* form */
+
+form{
+  background-color: #d4d3cd;
+  border-radius: 10px;;
+  padding : 1em 1em;
+  margin : 2em .1em;
+  width: 100%;
+  
+}
+form field,
+form label {
+  color : blue;
+  height : 1.2em;
+  font-size: 15px;
+
+}
+.username{
+  background-color: #f4f1f12d;
+}
+#user-section .username strong.imuser{
+  color : blue;
+}
+#user-section .username{
+  color : red;
+  padding-left: 1rem;
+}
+
+
+
+
+
+/* for messages */
+#message-section .alert{
+margin :1% 10%;
+}
+
+@media only screen and (max-width:390px){
+  .body-area {
+    margin: 3px 3px; 
+  }
+  
+}
+@media only screen and (min-width:391px)  and (max-width:700px) {
+  .body-area {
+    margin: 0 10px; 
+  }
+}
+@media screen and (min-width:701px) { 
+  .body-area {
+    margin: 0 10%; 
+  }
+
+}
+
+
+

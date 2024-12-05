@@ -1,0 +1,334 @@
+{% load static %}
+<div class="menu-btn">
+  <i class="fas fa-bars"></i>
+</div>
+
+<div class="side-bar">
+
+  <div class="close-btn">
+    <i class="fas fa-times"></i>
+
+  </div>
+
+  <div class="menu">
+
+    {% if user.is_authenticated %}
+
+      {% if not user.user.new_user %}
+    
+
+      <!-- document entries -->
+      <div class="item ">
+        <a class="sub-btn">
+          <!-- inserting google icons material-symbols-outlined -->
+          <span class="material-symbols-outlined icon1-submenu">post_add</span>
+        &nbsp;
+         Entries
+          <i class="fas fa-angle-right dropdown"></i>
+        </a>
+        <div class="sub-menu">
+          <div class="item ">
+            <a href="{% url 'app_forms:dashboard'%}" class="sub-item">Notary entry</a>  
+            <a href="{% url 'app_forms:notarysales-dashboard'%}" class="sub-item">Notary ListView</a>  
+            
+            <a href="{% url 'app_accounting:journal-create-record'%}" class="sub-item">Journal Entry</a>  
+                        
+            <a href="{% url 'app_expenses:expense-dashboard'%}" class="sub-item">Expenses</a>    
+            <div class="item ">
+              <a class="sub-btn">
+                <i class="fas fa-cogs"></i>Notary Report
+                <i class="fas fa-angle-right dropdown"></i>
+              </a>
+              <div class="sub-menu">
+                <a href="{% url 'app_forms:post-entries'%}" class="sub-item">Post Entry</a>     
+                <a href="{% url 'app_forms:sales-report-posted'%}" class="sub-item">Notary REport Sales</a>
+
+              </div>
+            </div>  
+          </div> 
+           
+        </div>
+      </div>   
+      <!-- other entries -->
+      <div class="item ">
+        <a class="sub-btn">
+          <span class="material-symbols-outlined icon1-submenu">
+            folder_special
+            </span>&nbsp;
+          Import Tables
+          <i class="fas fa-angle-right dropdown"></i>
+        </a>
+        <div class="sub-menu">
+          <a href="{% url 'app_import:import-excel-city' %}"  class="sub-item">Import City</a>
+          <a href="{% url 'app_import:import-province-town' %}"  class="sub-item">Import Towns</a>
+        </div>
+      </div>
+      <!-- accounting -->
+      <div class="item ">
+        <a class="sub-btn">
+          <span class="material-symbols-outlined icon1-submenu">
+            folder_special
+            </span>&nbsp;
+          Accounting
+          <i class="fas fa-angle-right dropdown"></i>
+        </a>
+        <div class="sub-menu">
+          <a href="{% url 'app_accounting:acct-dashboard' %}"  class="sub-item">Accounting Dashboard</a>
+
+          <a href="{% url 'app_accounting:acct-dashboard-voucher-creation' %}"  class="sub-item">Voucher Creation  Dashboard</a>
+
+          <a href="{% url 'app_accounting:voucher-creation-listview' %}"  class="sub-item">Voucher Creation  Listview</a>
+
+          <a href="{% url 'app_accounting:acct-dashboard-myvalidator' %}"  class="sub-item">Validation Sample</a>
+          <!-- joven -->
+
+          <a href="{% url 'app_forms:statementList-listview' %}"  class="sub-item">Statement of Account (class-based)</a>
+
+    
+          
+
+          <a href="{% url 'app_forms:statementList-function' %}"  class="sub-item">Statement of Account (function-based)</a>
+
+          <a href="{% url 'app_accounting:trial-balance' %}"  class="sub-item">Trial Balance (function-based)</a>
+
+          <a href="{% url 'app_accounting:trial-balance-2' %}"  class="sub-item">Trial Balance 2(function-based)</a>
+
+        </div>
+      </div>
+      <!--orm sample  queries-->
+
+      <div class="item ">
+        <a class="sub-btn">
+          <span class="material-symbols-outlined icon1-submenu">
+            folder_special
+            </span>&nbsp;
+          ORM
+          <i class="fas fa-angle-right dropdown"></i>
+        </a>
+        <div class="sub-menu">
+          <a href="{% url 'app_accounting:orm-dashboard' %}"  class="sub-item">ORM Dashboard</a>
+          <a href="{% url 'app_accounting:sample-popup-return-value' %}"  class="sub-item">sample popup return</a>          
+
+        </div>
+      </div>
+
+
+      <!-- Invoice entries -->
+      <div class="item ">
+        <a class="sub-btn">
+          <span class="material-symbols-outlined icon1-submenu">
+            folder_special
+            </span>&nbsp;
+         Invoice
+          <i class="fas fa-angle-right dropdown"></i>
+        </a>
+        <div class="sub-menu">
+          <a href="{% url 'app_invoice:invoice-create' %}"  class="sub-item">Create Invoice </a>
+
+          <a href="{% url 'app_print:reprint-invoice' %}"  class="sub-item">Reprint Invoice</a>          
+        </div>
+      </div>       
+
+      <!-- General Files(sales)-->
+      <div class="item ">
+        <a class="sub-btn">
+          <span class="material-symbols-outlined icon1-submenu">
+            folder_special
+            </span>&nbsp;
+         General Files(Sales)
+          <i class="fas fa-angle-right dropdown"></i>
+        </a>
+        <div class="sub-menu">
+          <a href="{% url 'app_invoice:category-dashboard' %}"  class="sub-item">Category</a>
+          <a href="{% url 'app_invoice:master-dashboard' %}"  class="sub-item">Master File</a>
+
+          <a href="{% url 'app_invoice:sales-entry-dashboard' %}"  class="sub-item">Sales Entry </a>          
+        </div>
+
+
+      </div>      
+
+     <!-- General Sample-->
+     <div class="item ">
+      <a class="sub-btn">
+       General Sample
+        <i class="fas fa-angle-right dropdown"></i>
+      </a>
+      <div class="sub-menu">
+        <a href="{% url 'app_sample:appSample-Dashboard' %}"  class="sub-item">Sample Dashboard(Accounts)</a>
+        <a href="{% url 'app_sample:voucher-create-view' %}"  class="sub-item">Voucher Create Form</a>
+        <a href="{% url 'app_sample:Studentlist-View' %}"  class="sub-item">Student </a>
+        <hr/>
+        <a href="{% url 'app_classbased:books-dashboard-functionbased' %}"  class="sub-item">Books (dashboard) function-based </a>
+        
+        <a href="{% url 'app_classbased:books-dashboard-listview' %}"  class="sub-item">Books (dashboard) listview </a>
+        
+
+
+
+      </div>
+      </div>      
+      <!-- htmx -->
+      <div class="item ">
+        <a class="sub-btn">
+          <!-- <i class="fas fa-cogs"></i> -->
+
+          <span class="material-symbols-outlined icon1-submenu">
+            code
+            </span>
+          HTMX tutorials
+          <i class="fas fa-angle-right dropdown"></i>
+        </a>
+        <div class="sub-menu">
+          <a href="{% url 'app_htmx:app-htmx-main'%}" class="sub-item">HTMX</a>        
+          
+        </div>
+      </div>      
+      <!-- cairo coders -->
+
+      <div class="item ">
+        <a class="sub-btn">
+          <!-- <i class="fas fa-cogs"></i> -->
+          <span class="material-symbols-outlined icon1-submenu">
+            grade
+            </span>           
+          cairo coders
+          <i class="fas fa-angle-right dropdown"></i>
+        </a>
+        <div class="sub-menu">
+          <a href="{% url 'app_cairo:product-list' %}" class="sub-item">main sample</a>        
+          
+        </div>
+      </div>    
+<!-- sample -->
+      <div class="item ">
+        <a class="sub-btn">sample xx1 <i class="fas fa-angle-right dropdown"></i></a>
+        <div class="sub-menu">
+          <a href="" class="sub-item">sample 2 1</a>     
+          <a href="" class="sub-item">sample 2 2</a>
+          
+        </div>
+      </div> 
+<!-- sample -->
+      <div class="item ">
+        <a class="sub-btn">
+          <i class="fas fa-cogs"></i>sample xx2 
+          <i class="fas fa-angle-right dropdown"></i>
+        </a>
+        <div class="sub-menu">
+          <div class="item ">
+            <a class="sub-btn">
+              <i class="fas fa-cogs"></i>sample 1
+              <i class="fas fa-angle-right dropdown"></i>
+            </a>
+            <div class="sub-menu">
+              <a href="" class="sub-item">sample 1 1</a>     
+              <a href="" class="sub-item">sample 1 2</a>
+            </div>
+          </div>  
+          <a href="" class="sub-item">sample 2</a>
+          <div class="item ">
+            <a class="sub-btn">
+              <!-- <i class="fas fa-cogs"></i> -->
+              sample 3
+              <i class="fas fa-angle-right dropdown"></i>
+            </a>
+            <div class="sub-menu">
+              <a href="" class="sub-item">sample 3 1</a>     
+              <a href="" class="sub-item">sample 3 2</a>
+              
+            </div>
+          </div> 
+          
+        </div>
+      </div>    
+      
+<!-- sample 2 -->
+      <div class="item ">
+        <a class="sub-btn">
+          <i class="fas fa-cogs"></i>Nitty Gritty
+          <i class="fas fa-angle-right dropdown"></i>
+        </a>
+        <div class="sub-menu">
+          <div class="item ">
+            <a class="sub-btn">
+              <i class="fas fa-cogs"></i>Date
+              <i class="fas fa-angle-right dropdown"></i>
+            </a>
+            <div class="sub-menu">
+              <a href="{% url 'app_sample:date-sample' %}" class="sub-item">Dates</a>     
+              <a href="" class="sub-item">sample 1 2</a>
+              
+            </div>
+          </div>  
+          <a href="{% url 'app_notary:notary-entry-modal' %}" class="sub-item">1. Notary Entry (modal)</a>  
+          <a href="{% url 'app_notary_ver2:notaryv2-entry-modal' %}" class="sub-item">2. Notary Entry (modal ver 2)</a>                
+          <a href="" class="sub-item">sample 2</a>
+          <div class="item ">
+            <a class="sub-btn">
+              <i class="fas fa-cogs"></i>Pending
+              <i class="fas fa-angle-right dropdown"></i>
+            </a>
+            <div class="sub-menu">
+              <a href="{% url 'app_notary:notary-entry' %}" class="sub-item">xxx Notary Entry(pending ajax on edit case)</a>      
+              <a href="" class="sub-item">sample 1 2</a>              
+              <a href="" class="sub-item">sample 3 1</a>     
+              <a href="" class="sub-item">sample 3 2</a>
+              
+            </div>
+          </div> 
+          
+        </div>
+      </div>    
+             
+      {% endif%}  
+
+      <div class="item "><a href="{% url 'app_accounts:logout-view' %}"><i class="fas fa-info-circle"></i>Logout</a>
+      </div>     
+  
+
+    {% else %}
+      <div class="item ">
+        <a href="{% url 'app_accounts:login-view' %}"><i class="fa-solid fa-door-open"></i>Login</a>
+        
+
+
+    </div>      
+    {% endif %}  
+    <div class="item "><a href="#"><i class="fas fa-info-circle"></i>About</a>
+    </div>          
+
+  </div>
+
+</div>
+  
+<script type="text/javascript">
+  $(document).ready(function(){
+    // jquery for toggle menu
+    $('.sub-btn').click(function(){
+      // e.preventDefault();
+      $(this).next('.sub-menu').slideToggle();
+      $(this).find('.dropdown').toggleClass('rotate');
+
+
+    })
+
+    $('.menu-btn').click(function(){
+      $('.side-bar').addClass('active');
+      $('.menu-btn').css("visibility","hidden")
+
+    })
+
+    $('.close-btn').click(function(){
+      $('.side-bar').removeClass('active')
+      $('.menu-btn').css("visibility","visible")
+
+    })
+  
+
+  })
+
+
+</script>
+
+<link rel="stylesheet" href="{% static 'css/custom-sidebar.css' %}">

@@ -1,0 +1,129 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+<section id="task-dashboard">
+  {% include 'app_task/user-info.html'%}
+
+  <div class="body-area">
+    <h1>Task Dashboard</h1>
+    <div class="add-button">
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-modal-form">new entry</button>   
+       
+    </div>
+    <div class="table-container">
+      <div class="table-container-wrapper">
+        <div class="table-wrapper">
+          <table id="main-table">
+            <caption> 
+              Task
+            </caption>
+            <thead>
+              <tr>
+                {% if user_access.supervisor %}
+                <th>User</th>
+                {% endif %}
+                <th>Category</th>
+                <th>Description</th>
+                <th>From</th>
+                <th>To</th>
+                {% if user_access.supervisor %}
+                <th>Duration</th>
+                {% endif %}                   
+                <th >Document</th>
+                <th>Posted</th>
+                <th colspan="2" >Action</th>                
+              </tr>
+            </thead>
+            {% for item in data %}
+            <tbody>
+              <tr id="task-id-{{item.id}}">
+                {% if user_access.supervisor %}
+                <td>{{item.user}}</td>
+                {% endif %}              
+    
+                <td data-cell="accno">{{item.category}}</td>
+                <td data-cell="desc">{{item.task_desc}}</td>
+                <td data-cell="From (Date)">{{item.date_from}}</td>
+                <td data-cell="To (Date)">{{item.date_to}}</td>
+                {% if user_access.supervisor %}
+                <td data-cell="Time Difference">{{item.diff}}</td>
+                {% endif %}    
+ 
+                <td data-cell="attached image">
+                  {% if item.doc_img%}
+                    <img src="{{item.doc_img.url}}" alt="pic" class="item-image-size-inlist" >
+  
+                  {% else %}
+                    <img src="{% static 'assets/images/document.jpg' %}" alt="pic" class="item-image-size-inlist" >
+                  {% endif %}               
+                </td>   
+                {%if item.is_posted%}
+                <td data-cell="posted"><p 
+                  class="status posted" >{{item.is_posted}}</p></td>
+                {%else%}  
+                <td data-cell="posted"><p 
+                  class="status notposted" >{{item.is_posted}}</p></td>
+                {%endif%}                
+                <td data-cell="delete">
+                  {% if not item.is_posted %}
+                    <button class="btn btn-danger btn-sm">
+                    <a href="{% url 'app_task:Task-delete-record' item.id%}">
+                      <i class="bi bi-trash3"></i>
+                    </a>
+                    </button>
+                  {% endif %}
+                </td>    
+                <td data-cell="Update">
+                  {% if not item.is_posted %}
+                  <button class="btn btn-info btn-sm">
+                    <a href="{% url 'app_task:Task-update-record' item.id%}">
+                      <i class="bi bi-pencil"></i>
+                    </a>
+                  </button>
+                  {% endif %}
+                </td>                                   
+  
+              </tr>   
+            </tbody>
+     
+            {% endfor %}
+          </table>
+  
+        </div>
+    </div>
+    {% include 'include/error-messeges.html'%}
+
+    </div>
+    
+  </div> 
+</section>
+<!-- modal form  1 -->
+<div class="modal fade" id="add-modal-form">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"> Fill the Form</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form action="{% url 'app_task:create-record-modal' %}"    enctype="multipart/form-data"  method="POST" >
+          {% csrf_token %}
+          <div class="form-row">
+            {% include 'app_task/form-fields-task.html' %}
+          </div> 
+          <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Submit modal</button>
+      
+        </form>         
+      </div>
+    </div>
+  </div>  
+</div>
+
+
+
+<link rel="stylesheet" href="{% static 'css/app-task-dashboard.css' %}">
+{% endblock %}
