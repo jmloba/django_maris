@@ -1,13 +1,13 @@
 
 .table-container{
-  /* background-color: rgba(127, 232, 202, 0.635); */
+  background-color: rgba(199, 234, 224, 0.31);
   padding : 1rem;
   
   
 }
 .table-container-wrapper{
 
-  background-color: rgba(243, 242, 228, 0.412);
+  /* background-color: rgb(234, 228, 136); */
   padding : 1rem 1.5rem; 
   display : block;
   justify-content: center;
@@ -29,7 +29,7 @@
   width :95%;
   
   max-height : calc(89% - 1.6rem) ;
-  background-color: rgba(242, 239, 244, 0.949);
+  
   margin :.8rem auto;
   border-radius: .6rem;
 
@@ -44,7 +44,7 @@
 }
 .table-wrapper::-webkit-scrollbar-thumb{
 border-radius: .5rem;
-background-color: rgba(7, 7, 237, 0.464);
+background-color: rgba(75, 75, 80, 0.464);
 visibility: hidden;
 
 }
@@ -89,32 +89,32 @@ table thead tr th {
   text-overflow :ellipsis ;
   white-space: nowrap;   
 }
+
+/* -----   begin zebra  ------*/
 table tbody tr td {
+  background-color: var(  --table-td-background );
   text-transform: capitalize;
   color : blue;
- 
-  text-align: left;
+   text-align: left;
   /* max-width: 100%; */
-  
-  overflow: hidden;
+   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-
   vertical-align: middle;
-
-
-  
 }
 
 
 /* zebra strip */
-tbody tr:nth-of-type(2n){
-  background-color:rgba(198, 217, 123, 0.563) ;
+tbody  tr:nth-child(odd){
+  background-color: var(--table-td-zebra );
 }
+/* -----   end zebra  ------*/
+
 
 /* hover on record */
 tbody tr:hover{
-  background-color: rgba(42, 195, 209, 0.837);
+  background-color: var(--table-record-hover );
+  font-weight: 700;
 } 
 
 
@@ -151,7 +151,7 @@ table img{
   
 }
 .status.posted{
-  background-color:var(--color-go-signal   );
+  background-color: rgb(46, 249, 164);  
   color: rgb(3, 61, 3);
 }
 .status.stat-deleted{
@@ -167,9 +167,32 @@ table img{
 
 
 @media (max-width:700px) {
-  table{
-    border : 2px solid red;
-  }
+  .table-container-wrapper{
+    background-color: #eaeaef3b;
+    padding :0 ;
+    margin :0 ;
+    overflow: auto;
+    }
+    .table-container-wrapper::-webkit-scrollbar{
+      width: .9rem;
+      height : .9rem;
+      
+    
+    }
+    .table-container-wrapper::-webkit-scrollbar-thumb{
+    border-radius: .5rem;
+    background-color: rgba(75, 75, 80, 0.464);
+    visibility: hidden;
+    
+    }
+    .table-container-wrapper:hover::-webkit-scrollbar-thumb{
+      visibility: visible;
+      cursor: pointer;
+    
+    }    
+
+
+
   table thead{
     display:none;
   }
@@ -178,7 +201,7 @@ table img{
   table th, 
   table td{
     /* display : block; */
-    padding : .5rem;
+    padding : 0rem;
     
     
   }

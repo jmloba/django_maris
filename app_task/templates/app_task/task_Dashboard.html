@@ -5,18 +5,17 @@
 {% block content %}
 
 <section id="task-dashboard">
-  {% include 'app_task/user-info.html'%}
-
+  {%include 'include/user-info.html'%}
   <div class="body-area">
     <h1>Task Dashboard</h1>
     <div class="add-button">
-      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-modal-form">new entry</button>   
+      <button class="btn btn-mybtn" data-bs-toggle="modal" data-bs-target="#add-modal-form">new entry</button>   
        
     </div>
     <div class="table-container">
       <div class="table-container-wrapper">
         <div class="table-wrapper">
-          <table id="main-table">
+          <table id="main-table table">
             <caption> 
               Task
             </caption>
@@ -37,11 +36,12 @@
                 <th colspan="2" >Action</th>                
               </tr>
             </thead>
+            <tbody  id="tbody" 
+            class="table-body">
             {% for item in data %}
-            <tbody>
               <tr id="task-id-{{item.id}}">
                 {% if user_access.supervisor %}
-                <td>{{item.user}}</td>
+                <td data-cell="User">{{item.user}}</td>
                 {% endif %}              
     
                 <td data-cell="accno">{{item.category}}</td>
@@ -87,9 +87,10 @@
                 </td>                                   
   
               </tr>   
+    
+            {% endfor %}              
             </tbody>
-     
-            {% endfor %}
+ 
           </table>
   
         </div>
@@ -122,8 +123,5 @@
     </div>
   </div>  
 </div>
-
-
-
 <link rel="stylesheet" href="{% static 'css/app-task-dashboard.css' %}">
 {% endblock %}

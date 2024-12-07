@@ -25,11 +25,9 @@ html {
   text-decoration: none;
   box-sizing: border-box;
 }
+
 ul li{
   list-style: None;
-}
-section{
-  margin-top: 1em;
 }
 
 img{
@@ -37,54 +35,16 @@ img{
   max-width : 100%;
   height : auto;
 }
-
-
-.my-container{
-  background-color: var(--my-container-background);
-  
-  display:flex;
-  flex-wrap : wrap;
-  align-content : center;
-  gap: 1em;
-  /* flex-direction : row; */
-  justify-content:center ;
-  /* margin: auto; */
-  padding: 5px;
-  border: var(--border-gold);
-  border-style: solid ;
-  border-radius: 15px;
-  border-width: 6px;
-
+.body-area{
+  /* background-color: rgb(204, 37, 37); */
+  margin :0 2em;
+}
+.table-container-wrapper{
+  background-color: #33ccff;
+  margin : 0;
+  padding :0;
 }
 
-.my-container-para{
-  margin-top : var(--margin-top);
-  margin-right:var(--margin-right);
-  margin-left :var(--margin-left);
-  margin-bottom:var(--margin-bottom);
-  
- }
-
- .user_card {
-  width: 350px;
-  margin-top: auto;
-  margin-bottom: auto;
-  background: #74cfbf;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 5px;
-
-}
-
-.form_container {
-  margin-top: 20px;
-}
 
 #form-title{
   color: #0d4a3b;
@@ -186,13 +146,7 @@ img{
   margin:1em 2em;
 }
 
-.body-area{
-  background-color: #ede3e292;
-  margin: 1rem .5rem;
-  
-  border-radius : 5px;
-  
-}
+
 .row-box{
   margin-bottom : 5px;
 }
@@ -214,7 +168,7 @@ img{
 /* form */
 
 form{
-  background-color: #d4d3cd;
+  /* background-color: #d4d3cd; */
   border-radius: 10px;;
   padding : 1em 1em;
   margin : 2em .1em;
@@ -228,15 +182,26 @@ form label {
   font-size: 15px;
 
 }
-.username{
-  background-color: #f4f1f12d;
+.user-info{
+  background-color : rgba(191, 177, 22, 0.528);
+  padding : 0;
+  vertical-align: auto;
+  display:flex;
+  justify-content: flex-end;
+  align-items: center;
+  max-width: max-content;
+  
+
 }
-#user-section .username strong.imuser{
-  color : blue;
+.user-info-details p {
+  color : black;
+  justify-content: right;
+  align-items: end;
+  margin :5px;
+
 }
-#user-section .username{
+.user-info-details p span {
   color : red;
-  padding-left: 1rem;
 }
 
 
@@ -248,23 +213,23 @@ form label {
 margin :1% 10%;
 }
 
-@media only screen and (max-width:390px){
+@media (max-width:700px){
+
   .body-area {
-    margin: 3px 3px; 
+    background-color:var(  --table-body-area);
+    margin: 0; 
+    padding :0;
   }
-  
-}
-@media only screen and (min-width:391px)  and (max-width:700px) {
-  .body-area {
-    margin: 0 10px; 
-  }
-}
-@media screen and (min-width:701px) { 
-  .body-area {
-    margin: 0 10%; 
+  .table-container{
+ 
+    margin : 0;
+    padding :0 !important;
+    
   }
 
-}
 
+
+ 
+}
 
 

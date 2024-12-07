@@ -28,12 +28,16 @@
   --margin-bottom     : 3em;
 
   /* table */
-  --table-border-color      :  .5px solid #000005 ; 
-  --table-td-desc-background  : rgb(41, 7, 7);
 
-  --table-td-background     : rgba(241, 244, 246, 0.229);
-  --table-header-background : rgba(102, 135, 162, 0.963);
-  --table-box-shadow: 3px .3rem .3rem rgba(36, 27, 162, 0.401) ;
+  --table-td-background :rgba(227, 228, 219, 0.795);
+  --table-td-zebra :rgba(88, 96, 92, 0.757);
+  --table-record-hover:red; 
+  --table-body-area:rgba(241, 240, 248, 0.157);
+
+
+
+
+  --table-box-shadow: 3px .3rem .3rem rgba(5, 75, 112, 0.401) ;
   --table-box-shadow-orange: 3px .4rem .4rem rgba(237, 230, 100, 0.817) ;
 
   /* --box-shadow1 :  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */

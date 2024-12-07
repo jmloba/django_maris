@@ -1,4 +1,4 @@
-
+#setting for offline#
 # import dj_database_url
 from pathlib import Path
 import os
@@ -17,8 +17,9 @@ SECRET_KEY =  config('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =config('DEBUG',cast=bool)
+DEBUG =  config('DEBUG', cast=bool)
 ALLOWED_HOSTS =config("ALLOWED_HOSTS").split(",")
+
 
 # Application definition
 
@@ -86,10 +87,12 @@ DATABASES = {
         'USER':     config('DB_USER'),
         'PASSWORD': config('DB_PASSWORD'),
         'HOST': config('DB_HOST'),
-        
     },    
 }
+
+
 DATABASES["default"] = dj_database_url.parse(config("DATABASE_URL"))
+
 
 
 # Password validation
