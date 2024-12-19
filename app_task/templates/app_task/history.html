@@ -1,0 +1,152 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+<section id="task-dashboard">
+  {%include 'include/user-info.html'%}
+  <div class="body-area">
+    <div class="dashboard-heading">
+      
+      <div class="dashboard-info">
+        <div class="dashboard-reference">
+          <h6>Reference <span>{{task}} </span></h6>
+        </div>
+
+        <div class="dashboard-mfo">
+          <h6>MFO : <span>{{task.mfo}} </span> </h6>
+
+        </div>
+
+        <div class="dashboard-mfosub">
+          <h6>MFOsub : <span>{{task.mfosub}} </span> </h6>
+        </div>
+
+        <div class="dashboard-mfosub2">
+          <h6>MFOsub2 : <span>{{task.mfosub2}} </span> </h6>
+          <p class='record-count'>Record Count :  <span>{{record_number}}</span> </p>
+
+        </div>
+        <div class="dashboard-pkref">
+          <h6>pkref : <span>{{pkref}} </span> </h6>
+        </div>
+
+      </div>
+    </div>
+
+    {% include 'include/error-messeges.html'%}
+
+  </div>
+  <div class="table-area">
+    <main class="table">
+      <section class="table__header">
+        <h3 class="title">Task History Dashboard</h3>
+      </section>
+      <section class="table__body">
+        <table>
+        <caption> 
+          Task
+        </caption>
+        <thead>
+          <tr>
+            <th>Revised Date(Y/M/d) </th>
+            <th>From</th>
+            <th>To</th>
+            <th>Description</th>
+
+            <th>Revision</th>
+            <th>Submitted</th>
+            <th>Action</th>
+
+          </tr>
+        </thead>
+        <tbody  id="tbody" 
+        class="table-body">
+        {% for item in data %}
+          <tr id="task-id-{{item.id}}">
+            <td data-cell="To(Date)">{{item.format_created}}</td>
+
+            <td data-cell="To(Date)">{{item.format_date_from}}</td>
+            <td data-cell="From (Date)">{{item.format_date_to}}</td>
+            <td data-cell="Description">{{item.description}}</td>
+
+
+            {%if item.revision%}
+            <td data-cell="Revision"><p 
+              class="status posted" >{{item.revision}}</p></td>
+            {%else%}  
+            <td data-cell="Revision"><p 
+              class="status notposted" >{{item.revision}}</p></td>
+            {%endif%}
+            
+            {%if item.submitted%}
+            <td data-cell="Revision"><p 
+              class="status posted" >{{item.submitted}}</p></td>
+            {%else%}  
+            <td data-cell="Revision"><p 
+              class="status notposted" >{{item.submitted}}</p></td>
+            {%endif%}
+            <td data-cell="delete">
+              
+                <button class="btn btn-danger btn-sm">
+                <a href="{% url 'app_task:history-delete-record' item.id  pkref %}">
+                  <i class="bi bi-trash3">delete</i>
+                </a>
+                </button>
+              
+            </td>     
+            <td data-cell="Update">
+              
+              <button class="btn btn-danger btn-sm">
+              <a href="{% url 'app_task:history-update-record' item.id task %}">
+                <i class="bi bi-pencil"></i>
+              </a>
+              </button>
+            
+          </td>                                
+      
+
+          </tr>   
+
+        {% endfor %}              
+        </tbody>
+
+        </table>
+
+      </section>
+      <div class="add-button">
+        <button class="btn btn-mybtn" data-bs-toggle="modal" data-bs-target="#add-modal-history-form">new entry</button>   
+         
+      </div>  
+     </main>
+
+  </div>
+  
+</section>
+<!-- modal form  1 -->
+
+<div class="modal fade" id="add-modal-history-form">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"> Add New Record</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form  method="POST" >
+          {% csrf_token %}
+          <div class="form-row">
+            {% include 'app_task/form-fields-history.html' %}
+          </div> 
+          <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Submit modal</button>
+      
+        </form>         
+      </div>
+    </div>
+  </div>  
+</div>
+
+<!-- <link rel="stylesheet" href="{% static 'css/app-task-history.css' %}"> -->
+{% endblock %}

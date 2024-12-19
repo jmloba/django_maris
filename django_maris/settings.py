@@ -1,4 +1,5 @@
-#setting for offline#
+#setting for offline
+
 # import dj_database_url
 from pathlib import Path
 import os
@@ -17,8 +18,9 @@ SECRET_KEY =  config('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =  config('DEBUG', cast=bool)
-ALLOWED_HOSTS =config("ALLOWED_HOSTS").split(",")
+
+DEBUG = True
+
 
 
 # Application definition
@@ -91,7 +93,6 @@ DATABASES = {
 }
 
 
-DATABASES["default"] = dj_database_url.parse(config("DATABASE_URL"))
 
 
 

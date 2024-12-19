@@ -1,13 +1,17 @@
 
 .table-container{
+  
   background-color: rgba(199, 234, 224, 0.31);
+
+  background-color: rgba(226, 226, 96, 0.838);
   padding : 1rem;
+  /* height: 84vh; */
+  /* max-height: 84vh; */
   
   
 }
 .table-container-wrapper{
-
-  /* background-color: rgb(234, 228, 136); */
+  background-color: rgb(14, 174, 65); 
   padding : 1rem 1.5rem; 
   display : block;
   justify-content: center;
@@ -15,25 +19,24 @@
   border-radius: .6rem;
   width : 100%;
   box-shadow: 2px 5px 10px rgb(46, 46, 243);
-  max-height : 40rem;
- 
+  
 }
 
 .table-container-wrapper h3{
-  background-color : white;
+  background-color : rgb(255, 255, 255);
   color: blue;
-  
+  height : 20rem;
+
 }
 
 .table-wrapper{
+  background-color :rgb(0, 208, 255);
+  padding : 1rem 1rem;
   width :95%;
-  
-  max-height : calc(89% - 1.6rem) ;
-  
+  max-height : calc(98% - 1.6rem) ;
   margin :.8rem auto;
   border-radius: .6rem;
-
-  overflow : auto;
+  overflow :scroll;
 }
  
 .table-wrapper::-webkit-scrollbar{
@@ -44,7 +47,7 @@
 }
 .table-wrapper::-webkit-scrollbar-thumb{
 border-radius: .5rem;
-background-color: rgba(75, 75, 80, 0.464);
+background-color: var(--table-wrapper-color);
 visibility: hidden;
 
 }
@@ -114,7 +117,8 @@ tbody  tr:nth-child(odd){
 /* hover on record */
 tbody tr:hover{
   background-color: var(--table-record-hover );
-  font-weight: 700;
+  color           : var(--table-record-hover-font-color ) !important;
+  
 } 
 
 
@@ -153,7 +157,9 @@ table img{
 .status.posted{
   background-color: rgb(46, 249, 164);  
   color: rgb(3, 61, 3);
+  
 }
+
 .status.stat-deleted{
   
   background-color: var(--color-go-signal);  
@@ -181,7 +187,7 @@ table img{
     }
     .table-container-wrapper::-webkit-scrollbar-thumb{
     border-radius: .5rem;
-    background-color: rgba(75, 75, 80, 0.464);
+    background-color: var(--table-wrapper-color);
     visibility: hidden;
     
     }

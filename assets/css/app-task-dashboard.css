@@ -1,0 +1,26 @@
+.dashboard-heading{
+  background-color: rgba(224, 199, 199, 0.317);
+  margin : 3em;
+  display : flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  border-radius: 10px;
+
+}
+.dashboard-title .title{
+  color :rgb(232, 70, 70);
+}
+.dashboard-info{
+  color:black;
+}
+.dashboard-info span{
+  color : blue;
+}
+.dashboard-category .record-count span{
+  color: brown;
+  font-weight: 600;
+  
+
+
+}

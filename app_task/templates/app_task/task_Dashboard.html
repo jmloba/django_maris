@@ -4,97 +4,135 @@
 
 {% block content %}
 
-<section id="task-dashboard">
+<section id="task-dashboard-section" class ='main-section'>
   {%include 'include/user-info.html'%}
   <div class="body-area">
-    <h1>Task Dashboard</h1>
-    <div class="add-button">
-      <button class="btn btn-mybtn" data-bs-toggle="modal" data-bs-target="#add-modal-form">new entry</button>   
+
+
+    <main class="table">
+      <section class="table__header">
+        <h3>Task Dasboard</h3>
+    
+
+      </section>
+      <section class="table__body">
+        <table >
+          <caption> 
+            this is caption of table
+          </caption>
+          <thead>
+            <tr>
+              {% if user_access.supervisor %}
+              <th>User</th>
+              {% endif %}
+    
+              <th >View Details</th>                
+              <th>Document</th>
+              <th>MFO</th>
+              <th>MFO sub</th>
+              <th>MFO sub2</th>
+  
+              <th class="task-desc">Description</th>
+              <th>From</th>
+              <th>To</th>
+              {% if user_access.supervisor %}
+              <th>Duration</th>
+              {% endif %}                   
+  
+              <th>Posted</th>
+              <th colspan="2" >Action</th>                
+            </tr>
+          </thead>
+          <tbody  id="tbody" 
+          class="table-body">
+          {% for item in data %}
+            <tr id="task-id-{{item.id}}">
+              {% if user_access.supervisor %}
+              <td data-cell="User">{{item.user}}</td>
+              {% endif %}     
        
-    </div>
-    <div class="table-container">
-      <div class="table-container-wrapper">
-        <div class="table-wrapper">
-          <table id="main-table table">
-            <caption> 
-              Task
-            </caption>
-            <thead>
-              <tr>
-                {% if user_access.supervisor %}
-                <th>User</th>
-                {% endif %}
-                <th>Category</th>
-                <th>Description</th>
-                <th>From</th>
-                <th>To</th>
-                {% if user_access.supervisor %}
-                <th>Duration</th>
-                {% endif %}                   
-                <th >Document</th>
-                <th>Posted</th>
-                <th colspan="2" >Action</th>                
-              </tr>
-            </thead>
-            <tbody  id="tbody" 
-            class="table-body">
-            {% for item in data %}
-              <tr id="task-id-{{item.id}}">
-                {% if user_access.supervisor %}
-                <td data-cell="User">{{item.user}}</td>
-                {% endif %}              
-    
-                <td data-cell="accno">{{item.category}}</td>
-                <td data-cell="desc">{{item.task_desc}}</td>
-                <td data-cell="From (Date)">{{item.date_from}}</td>
-                <td data-cell="To (Date)">{{item.date_to}}</td>
-                {% if user_access.supervisor %}
-                <td data-cell="Time Difference">{{item.diff}}</td>
-                {% endif %}    
- 
-                <td data-cell="attached image">
-                  {% if item.doc_img%}
-                    <img src="{{item.doc_img.url}}" alt="pic" class="item-image-size-inlist" >
+              <td data-cell="View History">
   
-                  {% else %}
-                    <img src="{% static 'assets/images/document.jpg' %}" alt="pic" class="item-image-size-inlist" >
-                  {% endif %}               
-                </td>   
+                <button class="btn btn-primary btn-sm">
+                  <a href="{% url 'app_task:history-view' item.pk%}">
+                    <i class="bi bi-pencil"></i>
+                  </a>
+                </button>
+              </td>                                          
+  
+              <td data-cell="attached image">
+                {% if item.doc_img%}
+                  <img src="{{item.doc_img.url}}" alt="pic" class="item-image-size-inlist" >
+  
+                {% else %}
+                  <img src="{% static 'assets/images/document.jpg' %}" alt="pic" class="item-image-size-inlist" >
+                {% endif %}               
+              </td>   
+              <td class='table-col-desc' data-cell="MFO">{{item.mfo}}</td>
+              <td data-cell="MFO sub">{{item.mfosub}}</td>
+              <td data-cell="MFO sub2">{{item.mfosub2}}</td>
+              
+              <td data-cell="desc" class="task-desc" >{{item.task_desc}}</td>
+  
+              <td data-cell="From (Date)">{{item.format_date_from}}</td>
+              <td data-cell="To (Date)">{{item.format_date_to}}</td>
+              
+              {% if user_access.supervisor %}
+              <td data-cell="Time Difference"> <strong>{{item.diff}}</strong>  </td>
+              {% endif %}    
+  
+              
+              <td data-cell="posted">
                 {%if item.is_posted%}
-                <td data-cell="posted"><p 
-                  class="status posted" >{{item.is_posted}}</p></td>
+                <p         class="status posted" >
+                  {{item.is_posted}}
+                </p>
                 {%else%}  
-                <td data-cell="posted"><p 
-                  class="status notposted" >{{item.is_posted}}</p></td>
-                {%endif%}                
-                <td data-cell="delete">
-                  {% if not item.is_posted %}
-                    <button class="btn btn-danger btn-sm">
-                    <a href="{% url 'app_task:Task-delete-record' item.id%}">
-                      <i class="bi bi-trash3"></i>
-                    </a>
-                    </button>
-                  {% endif %}
-                </td>    
-                <td data-cell="Update">
-                  {% if not item.is_posted %}
-                  <button class="btn btn-info btn-sm">
-                    <a href="{% url 'app_task:Task-update-record' item.id%}">
-                      <i class="bi bi-pencil"></i>
-                    </a>
+                <p 
+                class="status notposted" >{{item.is_posted}}
+                </p>
+                {%endif%}   
+
+              <td data-cell="delete">
+                {% if not item.is_posted %}
+                  <button class="btn btn-danger btn-sm">
+                  <a href="{% url 'app_task:Task-delete-record' item.id%}">
+                    <i class="bi bi-trash3"></i>
+                  </a>
                   </button>
-                  {% endif %}
-                </td>                                   
-  
-              </tr>   
-    
-            {% endfor %}              
-            </tbody>
- 
-          </table>
-  
-        </div>
-    </div>
+                {% endif %}
+              </td>    
+              <td data-cell="Update">
+                {% if not item.is_posted %}
+                <button class="btn btn-info btn-sm">
+                  <a href="{% url 'app_task:Task-update-record' item.id%}">
+                    <i class="bi bi-pencil"></i>
+                  </a>
+                </button>
+                {% endif %}
+              </td>   
+            </tr>   
+          {% endfor %}              
+          </tbody>
+        </table>
+   
+      </section>   
+
+      <section class="table__buttons">
+        <div class="add-button">
+          <button class="btn btn-mybtn" data-bs-toggle="modal" data-bs-target="#add-modal-form">new entry</button>   
+          
+          <button id="btn-print-task" data-url="{% url 'app_task:print-task-ajax' %}" class="btn btn-mybtn" >Print</button>   
+          
+           
+        </div> 
+
+      </section> 
+
+    </main>
+    <div class="container">
+
+
     {% include 'include/error-messeges.html'%}
 
     </div>
@@ -106,22 +144,101 @@
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title"> Fill the Form</h4>
+        <h4 class="modal-title"> Create New Record</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
 
-        <form action="{% url 'app_task:create-record-modal' %}"    enctype="multipart/form-data"  method="POST" >
+        <form id="task-form" method="POST"   action="{% url 'app_task:create-record-modal' %}"    enctype="multipart/form-data"  
+        data-mfosub-url ="{% url 'app_task:ajax_load_MFOsub' %}" 
+        data-mfosub2-url="{% url 'app_task:ajax_load_MFOsub2' %}">
           {% csrf_token %}
           <div class="form-row">
             {% include 'app_task/form-fields-task.html' %}
           </div> 
           <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Submit modal</button>
       
-        </form>         
+        </form>      
+        {% include 'include/error-messeges.html'%}   
       </div>
     </div>
   </div>  
 </div>
-<link rel="stylesheet" href="{% static 'css/app-task-dashboard.css' %}">
+
+
+<!-- <link rel="stylesheet" href="{% static 'css/app-task-dashboard.css' %}"> -->
+<script>
+  $("#id_mfo").change(function () {
+
+    var url = $("#task-form").attr("data-mfosub-url");  // get the url of the `load_cities` view
+    var countryId = $(this).val();  // ` get the selected country ID from the HTML input
+
+    console.log('url:', url)
+    console.log('countryId:', countryId)
+
+    $.ajax({                       // initialize an AJAX request
+      url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+      data: {
+        'mfo_id': countryId       // add the country id to the GET parameters
+      },
+
+      success: function (data) {   // `data` is the return of the `load_cities` view function
+        console.log(data)
+        // first solution
+        // $("#id_mfosub").html(data);  // replace the contents of the city input with the data that came from the server
+
+
+        //second solution
+        let html_data ='<option value="">-------</option>';
+        data.forEach(function(data){
+          html_data+=`<option value="${data.id}"> ${data.name}</option>`
+        console.log('html_data :',html_data)
+        $("#id_mfosub").html(html_data); 
+
+          
+        });
+
+      }
+    });
+
+  });
+  $("#id_mfosub").change(function () {
+
+  var url = $("#task-form").attr("data-mfosub2-url"); 
+  var countryId = $(this).val();  
+  console.log('url:', url)
+  console.log('countryId:', countryId)
+
+  $.ajax({         
+  url: url,          
+  data: {
+    'mfosub_id': countryId
+    
+  },
+
+  success: function (data) {   // `data` is the return of the `load_cities` view function
+      console.log(data)
+      // first solution
+      // $("#id_mfosub").html(data);  // replace the contents of the city input with the data that came from the server
+
+
+      //second solution
+      let html_data ='<option value="">-------</option>';
+      data.forEach(function(data){
+        html_data+=`<option value="${data.id}"> ${data.name}</option>`
+      console.log('html_data :',html_data)
+      $("#id_mfosub2").html(html_data); 
+
+        
+      });
+
+    }
+  });
+
+  });  
+
+
+
+</script>
+<script src="{% static 'js/app-task-print.js' %}" ></script> 
 {% endblock %}

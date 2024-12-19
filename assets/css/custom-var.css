@@ -1,26 +1,29 @@
 
 :root {
+  --color-fb-blue           : rgba(53, 32, 237, 0.885);
+  --color-bloody-red        : #910b0b;
+  --color-go-signal         : #238f47;
+
+  --main-section : #ebefa912;
+  --body-area : rgba(199, 235, 199, 0.161);
+  --main-table:rgba(81, 135, 158, 0.238);
+  --table:rgba(182, 24, 24, 0.854);
+  --table-header: rgb(177, 149, 39);
+  --table-header-color:white;
+  --table-th-background-color:rgb(138, 199, 236);
+
+  /* highlight on record hover */
+  --table-tr-hover-background:rgba(33, 7, 231, 0.867);
+  --table-tr-hover-color:white;
+  --modal-title-background: rgb(169, 232, 218);
+  --caption-background-color:var( --modal-title-background);
+
   --color1 : #071952;
   --color2 : #088395;
-  --color3 : #35A29F;
+  --color3 : #032b2a;
   --color4 : #F2F7A1;
  
- /* gold groups color */
-  --colorgold1 : #884A39;
-  --colorgold2 : #C38154;
-  --colorgold3 : #FFC26F;
-  --colorgold4 : #F9E0BB;
 
-  --border-gold   : #ac9e69;
-  --border-color  : var(--border-gold);
-  --border-color2 : var(--border-gold2);
-
-  --color-article-title     : rgb(20, 53, 144);
-  --card-background         : #F9E0BB;
-  --my-container-background : #eee3db;
-  --color-fb-blue           : rgba(53, 32, 237, 0.885);
-  --color-bloody-red        : #fd1f1f;
-  --color-go-signal         : #238f47;
  
   --margin-top        : 0;
   --margin-right      : 0;
@@ -33,9 +36,8 @@
   --table-td-zebra :rgba(88, 96, 92, 0.757);
   --table-record-hover:red; 
   --table-body-area:rgba(241, 240, 248, 0.157);
-
-
-
+  --table-wrapper-color: rgba(108, 108, 116, 0.69);
+  --table-record-hover-font-color :rgb(4, 48, 18);
 
   --table-box-shadow: 3px .3rem .3rem rgba(5, 75, 112, 0.401) ;
   --table-box-shadow-orange: 3px .4rem .4rem rgba(237, 230, 100, 0.817) ;

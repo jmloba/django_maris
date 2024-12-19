@@ -1,0 +1,86 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+<section id="task-dashboard">
+  {%include 'include/user-info.html'%}
+  <div class="body-area">
+    <h1>MFO Dashboard</h1>
+    <div class="add-button">
+      <button class="btn btn-mybtn" data-bs-toggle="modal" data-bs-target="#add-mfo-form">new entry</button>   
+       
+    </div>
+    <main class="table">
+      <section class="table__header"> </section>
+      <section class="table__body"> 
+        <table >
+          <caption> 
+            Task
+          </caption>
+          <thead>
+            <tr>
+              <th>name</th>
+              <th colspan="1" >Delete</th>
+            </tr>
+          </thead>
+          <tbody  id="tbody" 
+          class="table-body">
+          {% for item in data %}
+            <tr id="task-id-{{item.id}}">
+              <td data-cell="MFO">{{item.name}}</td>
+              <td data-cell="delete">
+                
+                  <button class="btn btn-danger btn-sm">
+                  <a href="{% url 'app_task:mfo-delete-record' item.id%}">
+                    <i class="bi bi-trash3"></i>
+                  </a>
+                  </button>
+                
+              </td>    
+            </tr>   
+  
+          {% endfor %}              
+          </tbody>
+
+        </table>
+      </section>
+      {% include 'include/error-messeges.html'%}
+    </main>
+  </div> 
+</section>
+<!-- modal form  1 -->
+<div class="modal fade" id="add-mfo-form">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Create New MFO</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form id="task-form" method="POST"   action="{% url 'app_task:dashboard-mfo' %}" enctype="multipart/form-data"  
+         >
+        
+          {% csrf_token %}
+   
+          <div class="row">
+            <div class="col-12">
+              {{form.name|as_crispy_field}}
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Submit modal</button>
+      
+        </form>      
+        {% include 'include/error-messeges.html'%}   
+      </div>
+    </div>
+  </div>  
+</div>
+
+
+<link rel="stylesheet" href="{% static 'css/app-task-dashboard.css' %}">
+
+{% endblock %}

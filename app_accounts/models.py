@@ -17,9 +17,7 @@ class UserProfile(models.Model):
   age = models.IntegerField(default=0, null=True, blank=True)
   def __str__(self):
     return str(self.user.username)
-  
-
-  
+ 
 class UserAccess(models.Model):
   user = models.OneToOneField(User, related_name='user', on_delete=models.CASCADE)
   new_user = models.BooleanField(default=True)

@@ -7,88 +7,94 @@
 <section id="post-entries" >
   {%include 'include/user-info.html'%}
   <div class="body-area">
-    <div class="title-div">
-      <h4>Post Task Entry</h4>
-    </div>
-    
+   
     <div class="table-container"  >   
         {% include 'include/error-messeges.html'%}
           <div class="table-container-wrapper">
             <form action="" method="POST">
               {% csrf_token %}
               <div class="table-wrapper">
-                <table id=' table' >
-                  <thead class="thead-light">
-                    <tr>
-                      <th >Checkbox</th>                  
-                      <th >User</th>                  
-                      <th >Document</th>       
-
-                      <th >category</th>
-                      <th >task_desc</th>
-                      <th >Date From</th>
-                      <th >Date To</th>
-                      <th >View</th>
-                    </tr>
-                  </thead>
-                  
-                  <tbody id="tbody" class="table-body">
-                    {% if data %}
-                      {% for item in data %}
+                <main class='table'>
+                  <section class="table__header">
+                    <h3>Post Task Entry</h3>
+                  </section>
+                  <section class="table__body">
+                    <table >
+                      <thead class="thead-light">
+                        <tr>
+                          <th >Checkbox</th>                  
+                          <th >User</th>                  
+                          <th >Document</th>       
+    
+                          <th >category</th>
+                          <th >task_desc</th>
+                          <th >Date From</th>
+                          <th >Date To</th>
+                          <th >View</th>
+                        </tr>
+                      </thead>
+                      
+                      <tbody id="tbody" class="table-body">
+                        {% if data %}
+                          {% for item in data %}
+              
+                          <tr id="categ-id-{{item.id}}">
+                            {% if item.is_posted %}
+                            <td> 
+                              <div  data-cell='Check to Post 'class="form-check">
+                                <input class="form-check-input form-check-posted" type="checkbox" checked="checked" value="{{item.id}}" name="boxes"  disabled
+                                >
+    
+                              </div>
+                            </td>
+                            {% else %}
+                            <td data-cell='Check to Post '> 
+                              <input class="form-check-input form-check-not-posted" type="checkbox"  value="{{item.id}}" name="boxes" >
+                            </td>               
+                            {% endif %}
+                            
+                            <td data-cell='User' class="td-text td-text-name">{{item.user}}</td>                        
+                            {% if item.doc_img%}
+                              <td data-cell='Document '>
+                                <img src="{{item.doc_img.url}}" alt="pic" class="item-image-size-inlist" >
+                              </td>
+                            {% else %}
+                              <td data-cell='Document '>
+                                <img src="{% static 'image-default/default-image.png' %}" alt="pic" class="item-image-size-inlist" >
+                              
+                              </td>     
+                            {% endif %}               
           
-                      <tr id="categ-id-{{item.id}}">
-                        {% if item.is_posted %}
-                        <td> 
-                          <div  data-cell='Check to Post 'class="form-check">
-                            <input class="form-check-input form-check-posted" type="checkbox" checked="checked" value="{{item.id}}" name="boxes"  disabled
-                            >
-
-                          </div>
-                        </td>
-                        {% else %}
-                        <td data-cell='Check to Post '> 
-                          <input class="form-check-input form-check-not-posted" type="checkbox"  value="{{item.id}}" name="boxes" >
-                        </td>               
+                            <td data-cell='Category' class="td-text td-text-name">{{item.category}}</td>
+                            <td data-cell='Description' class="td-text-ref">{{item.task_desc}}</td>
+                            <td data-cell='Date (From)' class="td-text-ref">{{item.date_from}}</td>
+                            <td data-cell='Date (To)' class="td-text-ref">{{item.date_to}}</td>
+    
+                            <td data-cell='View REcord'>view
+                              <a
+                              class="open-incident"
+                              href="{% url 'app_task:view-item' item.id %}"
+                              data-popup-url="{% url 'app_task:view-item' item.id%}"
+                              >{{ item.id }}</a>
+    
+                          </td>                         
+                                            
+                          </tr>
+                          {% endfor %}
                         {% endif %}
-                        
-                        <td data-cell='User' class="td-text td-text-name">{{item.user}}</td>                        
-                        {% if item.doc_img%}
-                          <td data-cell='Document '>
-                            <img src="{{item.doc_img.url}}" alt="pic" class="item-image-size-inlist" >
-                          </td>
-                        {% else %}
-                          <td data-cell='Document '>
-                            <img src="{% static 'image-default/default-image.png' %}" alt="pic" class="item-image-size-inlist" >
-                          
-                          </td>     
-                        {% endif %}               
+    
+                      </tbody>
+                      
+                    </table>
       
-                        <td data-cell='Category' class="td-text td-text-name">{{item.category}}</td>
-                        <td data-cell='Description' class="td-text-ref">{{item.task_desc}}</td>
-                        <td data-cell='Date (From)' class="td-text-ref">{{item.date_from}}</td>
-                        <td data-cell='Date (To)' class="td-text-ref">{{item.date_to}}</td>
-
-                        <td data-cell='View REcord'>view
-                          <a
-                          class="open-incident"
-                          href="{% url 'app_task:view-item' item.id %}"
-                          data-popup-url="{% url 'app_task:view-item' item.id%}"
-                          >{{ item.id }}</a>
-
-                      </td>                         
-                                        
-                      </tr>
-                      {% endfor %}
-                    {% endif %}
-
-                  </tbody>
-                  
-                </table>
+                  </section>
+                  <input class="btn btn-mybtn" type="submit" value="Submit"> 
+                </main>
 
               </div>
 
 
-            <input class="btn btn-mybtn" type="submit" value="Submit">
+
 
             </form>
             

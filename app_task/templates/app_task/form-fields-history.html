@@ -1,0 +1,26 @@
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+<div class="row">
+  <div class="col-6">
+    {{form.date_from|as_crispy_field}}
+  </div>
+  <div class="col-6">
+    {{form.date_to|as_crispy_field}}
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    {{form.description|as_crispy_field}}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-6">
+    {{form.revision|as_crispy_field}}
+  </div>
+  <div class="col-6">
+    {{form.submitted|as_crispy_field}}
+  </div>
+</div>

@@ -1,0 +1,33 @@
+{% extends 'main/base.html'%}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<section id="mfosub-delete" >
+  {% include 'app_task/user-info.html'%}
+
+  <div class="body-area">
+
+    <div class="row">
+      <h3>Delete MFOsub</h3>
+      <div class="delete-div"  >
+
+        <form  method="POST" >
+          {% csrf_token %}
+          {% include 'app_task/form-fields-mfosub.html'%}
+          <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Delete Submit</button>
+    
+        </form>
+      </div>
+ 
+    </div>
+  </div>
+</section>
+<link rel="stylesheet" href="{% static 'css/app-task-dashboard.css' %}">
+
+
+
+{% endblock %}
+
