@@ -1,0 +1,124 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+{%include 'include/user-info.html'%}
+<section id="query-classroom">
+  <div class="button-area">
+    
+    <button id="btn-hide-all" class="btn btn-mybtn">Hide all Tables</button>
+    <button id="btn-show-all" class="btn btn-mybtn">Show all Tables</button>
+    <button id="btn-Teacher-table" class="btn btn-mybtn">Show all Tables</button>
+
+  </div>
+  <div class="body-area ">
+    <div class="table-area">
+      <main class="table Teacher-table">
+        <section class="table__header"> 
+          <div class="table-header">Teacher Table</div>
+        </section>
+        <section class="table__body"> 
+          <table >
+            <caption> 
+              Teacher Table
+            </caption>
+            <thead>
+              <tr>
+                <th>name</th>
+                <th>Action</th>
+
+              </tr>
+            </thead>
+            <tbody  id="tbody" 
+            class="table-body">
+            {% for teacher in teachers %}
+              <tr id="task-id-{{item.id}}">
+                <td data-cell="MFO">{{teacher.name}}</td>
+                <td data-cell="Add">
+                    <button class="btn btn-mybtn" data-bs-toggle="modal" data-bs-target="#add-teacher-form">                      <i class="bi bi-pencil"></i></button>  
+                </td>    
+              </tr>   
+            {% endfor %}              
+            </tbody>
+  
+          </table>
+
+        </section>
+        <section class="add-teacher">
+          <button class="btn-mybtn btn-danger btn-sm"><a data-bs-toggle="modal" data-bs-target="#add-teacher-form">
+            <i class="bi bi-plus"></i>
+          </a>
+          </button>
+        </section>
+
+        {% include 'include/error-messeges.html'%}
+      </main>
+  
+      <main class="table Courses-table">
+        <section class="table__header"> 
+          <div class="table-header">Courses Table</div>
+        </section>
+        <section class="table__body"> 
+          <table >
+            <caption> 
+              Courses Table
+            </caption>
+            <thead>
+              <tr>
+                <th>name</th>
+              </tr>
+            </thead>
+            <tbody  id="tbody" 
+            class="table-body">
+            {% for item in courses %}
+              <tr id="task-id-{{item.id}}">
+                <td data-cell="MFO">{{item.course}}</td>
+              </tr>   
+    
+            {% endfor %}              
+            </tbody>
+  
+          </table>
+        </section>
+        {% include 'include/error-messeges.html'%}
+      </main>
+  
+
+    </div>
+  </div> 
+</section>
+<!-- modal form  1 -->
+<div class="modal fade" id="add-teacher-form">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add New Teacher</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form name="teacherform"  id="teacher-form" method="POST"   action="{% url 'app_query:add-record-teacher' %}" >
+        
+          {% csrf_token %}
+          {% include 'app_query/form-fields-teacher.html'%} 
+   
+
+          <button  id="btn-save-add-teacher" type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Submit modal</button>
+      
+        </form>     
+
+        {% include 'include/error-messeges.html'%}   
+      </div>
+    </div>
+  </div>  
+</div>
+
+
+
+<link rel="stylesheet" href="{% static 'css/app-query-classroom.css' %}">
+<script src="{% static 'js/app-query-classroom.js' %}" ></script>   
+
+
+
+{% endblock %}

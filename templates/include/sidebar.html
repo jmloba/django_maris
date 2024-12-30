@@ -13,10 +13,7 @@
   <div class="menu">
 
     {% if user.is_authenticated %}
-
       {% if not user.user.new_user %}
-    
-
       <!-- document entries -->
       <div class="item ">
         <a class="sub-btn">
@@ -48,8 +45,32 @@
           </div>     
           
         </div>
-      </div>   
-   
+
+      </div>  
+      {% if user.user.Programmers %}
+      <div class="item ">
+        <a class="sub-btn">
+          <!-- inserting google icons material-symbols-outlined -->
+          <!-- <span class="material-symbols-outlined icon1-submenu">post_add</span> -->
+        &nbsp;
+        Programmers Sample
+          <i class="fas fa-angle-right dropdown"></i>
+        </a>
+        <div class="sub-menu">
+          <div class="item ">
+            <a href="{% url 'app_query:query-dashboard' %}" class="sub-item">query DAshboard using Tasktable</a>  
+          </div> 
+          <div class="item ">
+            <a href="{% url 'app_query:query-classroom' %}" class="sub-item">query Classroom</a>  
+          </div>
+          <div class="item ">
+            <a href="{% url 'app_query:queryTableModal' %}" class="sub-item">query Tables Modal</a>  
+          </div>
+
+        </div>
+      </div>  
+      {% endif%}  
+          
              
       {% endif%}  
 

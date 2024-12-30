@@ -1,0 +1,102 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+<section id="query-dashboard">
+  {%include 'include/user-info.html'%}
+  <div class="body-area">
+    
+    <main class="table task-table">
+      <section class="table__header"> 
+        <div class="table-header">Task Table</div>
+      </section>
+      <section class="table__body"> 
+        <table >
+          <caption> 
+            Task Table form 
+          </caption>
+          <thead>
+            <tr>
+              <th>mfo</th>
+              <th>mfosub</th>
+              <th>mfosub2</th>
+              <th>Desc</th>
+              <th>histref</th>
+              <th>date from</th>
+              <th>date to</th>
+              <th>Diff</th>
+              <th>Description</th>
+
+
+
+            </tr>
+          </thead>
+          <tbody  id="tbody" 
+          class="table-body">
+          {% for item in data %}
+            <tr id="task-id-{{item.id}}">
+              <td data-cell="MFO">{{item.reference.mfo}}</td>
+              <td data-cell="MFOsub">{{item.reference.mfosub}}</td>
+              <td data-cell="MFOsub2">{{item.reference.mfosub2}}</td>
+              <td data-cell="Task Desc">{{item.reference.task_desc}}</td>
+              <td data-cell="Task Desc">{{item.reference}}</td>
+              <td data-cell="DAte from">{{item.date_from}}</td>
+              <td data-cell="DAte to">{{item.date_to}}</td>
+              <td data-cell="Diff">{{item.diff}}</td>         
+              <td data-cell="hist desc">{{item.description}}</td>         
+
+              
+            </tr>   
+  
+          {% endfor %}              
+          </tbody>
+
+        </table>
+      </section>
+      {% include 'include/error-messeges.html'%}
+    </main>
+    <main class="table store_table">
+      <section class="table__header"> 
+        <div class="table-header">Books</div>
+      </section>
+      <section class="table__body"> 
+        <table >
+          <caption> 
+            Books
+          </caption>
+          <thead>
+            <tr>
+              <th>Book</th>
+              <th>Price</th>
+              <th>Store</th>
+              
+
+            </tr>
+          </thead>
+          <tbody  id="tbody" 
+          class="table-body">
+          {% for item in book_data %}
+            <tr id="task-id-{{item.id}}">
+              <td data-cell="Store">{{item.bookname}}</td>
+              <td data-cell="Bookname">{{item.price}}</td>
+                  
+            </tr>   
+          {% endfor %}              
+          </tbody>
+        </table>
+      </section>
+      {% include 'include/error-messeges.html'%}
+    </main>    
+
+
+
+  </div> 
+</section>
+
+
+<link rel="stylesheet" href="{% static 'css/app-task-dashboard.css' %}">
+
+
+{% endblock %}

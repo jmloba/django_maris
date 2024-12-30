@@ -34,12 +34,20 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app_task',
     'app_accounts',
+    'app_query',
+    
     # pip install pillow
     #pip install crispy-bootstrap5
     "crispy_forms",
     "crispy_bootstrap5",
     #pip install django-formtools
     "formtools",
+    #pip install djangorestframework
+    'rest_framework',
+    
+    #  python -m pip install django-debug-toolbar
+    #  "django.contrib.staticfiles",
+    "debug_toolbar",     
 ]
 
 MIDDLEWARE = [
@@ -50,10 +58,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'django_maris.urls'
+INTERNAL_IPS = [
+    
+    "127.0.0.1",
 
+]
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

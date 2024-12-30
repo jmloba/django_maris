@@ -1,0 +1,58 @@
+#query-classroom{
+  display:flex;
+  background-color : rgba(219, 208, 208, 0.634);
+}
+.table-area{
+  display : block;
+}
+.button-area{
+  width : 15%;
+}
+.button-area button{
+  margin-bottom : 5px;
+}
+.body-area{
+  width : 85%;
+}
+main{
+  width: 100%;
+}
+main.table .table-header{
+  font-size: 18px;
+  font-weight: 500;
+  color : yellow;
+}
+#Task-table-edit-modal .modal-header{
+  background-color: rgb(229, 229, 160);
+}
+@media (max-width:700px){
+  #query-classroom{
+    display:block;
+    /* background-color : rgb(208, 159, 159); */
+    justify-content: center;
+
+  }
+  .button-area{
+    margin-top : 1rem;
+    width : 100%;
+  }
+  .button-area button{
+    margin-bottom : 5px;
+    margin-right : 5px;
+  }
+  .body-area{
+    width: 95%;
+
+    margin :auto;
+    margin-top : 1rem;
+
+  }
+  #query-classroom .container{
+    display: flex;
+    background-color: brown;
+    justify-content: space-between;
+    padding : 1rem 1rem;
+    margin : 1rem 1rem;
+  }
+
+}

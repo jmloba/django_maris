@@ -23,6 +23,7 @@ class UserAccess(models.Model):
   new_user = models.BooleanField(default=True)
   supervisor = models.BooleanField(default=False)
   post_task = models.BooleanField(default=False)
+  Programmers = models.BooleanField(default=False)  
 
   # location=models.CharField(max_length=30, null=True, blank=True)
 

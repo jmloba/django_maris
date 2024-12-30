@@ -1,0 +1,164 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+<section id="query-dashboard">
+  {%include 'include/user-info.html'%}
+  <div class="body-area">
+    <h1>query Dashboard</h1>
+    <div class="add-button">
+      <button class="btn btn-mybtn" data-bs-toggle="modal" data-bs-target="#add-TaskTable-form">new entry</button>   
+      
+      <a href="{% url 'app_query:query-tasktable'%}">
+      <button class="btn btn-mybtn" >Query tasktable
+
+      </button>  
+      </a>       
+       
+    </div>
+
+    <main class="table">
+      <section class="table__header"> 
+        <h3>Task Dasboard</h3>
+      </section>
+      <section class="table__body"> 
+        <table >
+          <caption> 
+            Task Table form 
+          </caption>
+          <thead>
+            <tr>
+              <th>mfo</th>
+              <th>mfosub</th>
+              <th>mfosub2</th>
+              <th>description</th>
+              
+            </tr>
+          </thead>
+          <tbody  id="tbody"  class="table-body">
+          {% for item in data %}
+            <tr id="task-id-{{item.id}}">
+              <td data-cell="MFO">{{item.mfo}}</td>
+              <td data-cell="MFOsub">{{item.mfosub}}</td>
+              <td data-cell="MFOsub2">{{item.mfosub2}}</td>              
+              <td data-cell="Description">{{item.task_desc}}</td>      
+            </tr>   
+  
+          {% endfor %}              
+          </tbody>
+
+        </table>
+      </section>
+      {% include 'include/error-messeges.html'%}
+    </main>
+
+
+  </div> 
+</section>
+<!-- modal form  1 -->
+<div class="modal fade" id="add-TaskTable-form">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Create New TAskTable</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form id="task-form" method="POST"   action="{% url 'app_query:create-record-modal-qtest' %}" enctype="multipart/form-data"  
+        data-mfosub-url ="{% url 'app_task:ajax_load_MFOsub' %}" 
+        data-mfosub2-url="{% url 'app_task:ajax_load_MFOsub2' %}"
+         >
+        
+          {% csrf_token %}
+          {% include 'app_task/form-fields-task.html'%} 
+   
+
+          <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Submit modal</button>
+      
+        </form>      
+        {% include 'include/error-messeges.html'%}   
+      </div>
+    </div>
+  </div>  
+</div>
+
+
+<!-- <link rel="stylesheet" href="{% static 'css/app-task-dashboard.css' %}"> -->
+
+<script>
+  $("#id_mfo").change(function () {
+
+    var url = $("#task-form").attr("data-mfosub-url");  // get the url of the `load_cities` view
+    var countryId = $(this).val();  // ` get the selected country ID from the HTML input
+
+    console.log('url:', url)
+    console.log('countryId:', countryId)
+
+    $.ajax({                       // initialize an AJAX request
+      url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+      data: {
+        'mfo_id': countryId       // add the country id to the GET parameters
+      },
+
+      success: function (data) {   // `data` is the return of the `load_cities` view function
+        console.log(data)
+        // first solution
+        // $("#id_mfosub").html(data);  // replace the contents of the city input with the data that came from the server
+
+
+        //second solution
+        let html_data ='<option value="">-------</option>';
+        data.forEach(function(data){
+          html_data+=`<option value="${data.id}"> ${data.name}</option>`
+        console.log('html_data :',html_data)
+        $("#id_mfosub").html(html_data); 
+
+          
+        });
+
+      }
+    });
+
+  });
+  $("#id_mfosub").change(function () {
+
+  var url = $("#task-form").attr("data-mfosub2-url"); 
+  var countryId = $(this).val();  
+  console.log('url:', url)
+  console.log('countryId:', countryId)
+
+  $.ajax({         
+  url: url,          
+  data: {
+    'mfosub_id': countryId
+    
+  },
+
+  success: function (data) {   // `data` is the return of the `load_cities` view function
+      console.log(data)
+      // first solution
+      // $("#id_mfosub").html(data);  // replace the contents of the city input with the data that came from the server
+
+
+      //second solution
+      let html_data ='<option value="">-------</option>';
+      data.forEach(function(data){
+        html_data+=`<option value="${data.id}"> ${data.name}</option>`
+      console.log('html_data :',html_data)
+      $("#id_mfosub2").html(html_data); 
+
+        
+      });
+
+    }
+  });
+
+  });  
+
+
+
+</script>
+{% endblock %}

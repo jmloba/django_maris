@@ -1,0 +1,25 @@
+{% load crispy_forms_tags %}
+{% load static %}
+<div class="row">
+  <div class="col-lg-6 col-sm-6">
+    {{task_form.owner|as_crispy_field}}
+  </div>  
+  <div class="col-lg-6 col-sm-6">
+    {{task_form.name|as_crispy_field}}
+  </div>
+ </div>
+
+ <div class="row">
+  <div class="col-lg-12 col-sm-12">
+    {{task_form.task_date|as_crispy_field}}
+  </div>  
+ </div>
+
+ <div class="row">
+  <div class="col-lg-6 col-sm-6">
+    {{task_form.start_time|as_crispy_field}}
+  </div>  
+  <div class="col-lg-6 col-sm-6">
+    {{task_form.end_time|as_crispy_field}}
+  </div>    
+ </div>

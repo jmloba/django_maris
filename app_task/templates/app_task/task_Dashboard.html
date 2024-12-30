@@ -12,8 +12,6 @@
     <main class="table">
       <section class="table__header">
         <h3>Task Dasboard</h3>
-    
-
       </section>
       <section class="table__body">
         <table >
@@ -43,8 +41,7 @@
               <th colspan="2" >Action</th>                
             </tr>
           </thead>
-          <tbody  id="tbody" 
-          class="table-body">
+          <tbody  id="tbody"   class="table-body">
           {% for item in data %}
             <tr id="task-id-{{item.id}}">
               {% if user_access.supervisor %}
@@ -130,6 +127,7 @@
       </section> 
 
     </main>
+
     <div class="container">
 
 

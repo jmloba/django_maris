@@ -49,8 +49,10 @@ img{
   margin-top:2em;
 }
 .body-area{
-  background-color: var(--body-area );
+  
+  background-color: var(--table-body-area) !important;
   margin :0 1em;
+  padding : 1em 1em;
 }
 
 #error-messages,
@@ -231,7 +233,7 @@ margin :1% 10%;
 @media (max-width:700px){
 
   .body-area {
-    background-color:var(  --table-body-area);
+    background-color: var(--table-body-area);
     margin: 0; 
     padding :0;
   }

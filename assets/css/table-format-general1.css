@@ -11,14 +11,15 @@
 main.table{
 background-color: rgba(230, 238, 173, 0.233) !important;
   
-  width : 90vw;
-  height : 90vh;
+  /* width : 98vh; */
+  height : 70vh;
   /* max-height: 80vh; */
-  margin: auto;
+  
   backdrop-filter: blur(7px);
   box-shadow: 2px 5px 10px rgb(46, 46, 243);
   border-radius: .8rem;
   overflow : hidden;
+  margin: auto;
   margin-bottom :1rem;
 }
 .table__buttons{
@@ -95,10 +96,14 @@ table th{
 tbody tr:nth-child(even){
   background-color: rgba(173, 179, 179, 0.41);
 }
-tbody tr:hover{
+tbody tr:hover td{
   background-color:var( --table-tr-hover-background);
-  color:var(  --table-tr-hover-color)
+  color:var(  --table-tr-hover-color);
+  font-weight : 500;
+  transition : all .3s ease-in;
+  cursor : pointer;
 }
+
 .status{
   
   padding :.2rem .8rem;
@@ -147,47 +152,47 @@ td.task-desc{
 
 }
 @media (max-width:700px) {
-  main.table{
-    margin : auto;
-    width: 98%;
+  th{
+    display : none;
   }
-  table thead{
-    display:none;
-  }
-  td.task-desc{
-    width: 35rem !important;
-   
-  }
-
-
-  table th, 
+  table tr,
   table td{
-    /* display : block; */
-    padding : 0rem;
-    
+    display: block;
+    width : 100%;
+
   }
   table tr{
+    margin-bottom : 1rem;
     display : block;
   }
 
-  table tbody tr td {
-    /* text-align: right !important; */
-    display :block;
+  table  td {
+    text-align: right;        
+    display : block;
+    /* position : relative; */
+    
+    /* padding-left: 50%; */
+
+    
     
   }
 
-  
-  table tbody tr td::before{
+/*   
+  table  tbody tr td::before{
     content : attr(data-cell)" : ";
+    position : absolute;
     text-transform: capitalize;
-    float : left;
-    color : black;
+    left:0;
     
-  } 
-  table tbody tr:hover{
-    background-color: rgb(124, 124, 202);
-    color : white;
-  }
+    
+    color : black;
+    width : 50%;
+    text-align: left;
+
+
+    
+  }  */
+ 
   td p.status{
     margin : 2em 1em;
      right:0;

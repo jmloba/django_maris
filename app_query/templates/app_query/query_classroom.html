@@ -1,0 +1,167 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+{%include 'include/user-info.html'%}
+<section id="query-classroom">
+  <div class="button-area">
+    
+    <button id="btn-hide-all" class="btn btn-mybtn">Hide all Tables</button>
+    <button id="btn-show-all" class="btn btn-mybtn">Show all Tables</button>
+    <button id="btn-Teacher-table" class="btn btn-mybtn">Show all Tables</button>
+
+  </div>
+  <div class="body-area ">
+    <div class="table-area">
+      <main class="table Teacher-table">
+        <section class="table__header"> 
+          <div class="table-header">Teacher Table</div>
+        </section>
+        <section class="table__body"> 
+          <table >
+            <caption> 
+              Teacher Table
+            </caption>
+            <thead>
+              <tr>
+                <th>name</th>
+                <th>Action</th>
+
+              </tr>
+            </thead>
+            <tbody  id="tbody" 
+            class="table-body teacher-tbody">
+            {% for teacher in teachers %}
+              <tr id="task-id-{{teacher.id}}">
+                <td data-cell="Name">{{teacher.name}}</td>
+                <td>
+                  <button class="btn btn-danger btn-sm">
+                    <a href="{% url 'app_query:UpdateDeleteTeacher-ajax' teacher.id%}" class="teacher-link-delete" data-id = {{teacher.id}}>
+                      <i class="bi bi-trash3"></i>
+                    </a>
+                  </button>
+                </td>
+
+                <td>
+
+                  <button class="btn btn-info btn-sm">
+                    <a href="{% url 'app_query:UpdateDeleteTeacher-ajax' teacher.id%}" class="teacher-link-update" >
+                      <i class="bi bi-pencil"></i>
+                    </a>
+                  </button>                  
+  
+                </td>       
+              </tr>   
+            {% endfor %}              
+            </tbody>
+  
+          </table>
+
+        </section>
+        <section class="add-teacher">
+        
+            <button data-bs-toggle="modal" data-bs-target="#add-teacher-modal" class="btn-mybtn btn-danger btn-sm">Add New Teacher
+            </button>
+        
+        </section>
+
+        {% include 'include/error-messeges.html'%}
+      </main>
+  
+ 
+
+    </div>
+  </div> 
+</section>
+
+
+
+<!-- modal form  1 -->
+<div class="modal fade" id="add-teacher-modal">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add New Teacher</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form name="teacherform"  id="teacher-form" method="POST"   >
+        
+          {% csrf_token %}
+          {% include 'app_query/form-fields-teacher.html'%} 
+   
+          <input type="type" name ="stuid" id ="stuid">
+
+          <input type="submit"  id="btn-save-add-teacher"  value ="save" class="btn btn-primary"  data-url="{% url 'app_query:add-edit-record-teacher-ajax' %} ">       
+
+          
+        </form>     
+
+        {% include 'include/error-messeges.html'%}   
+      </div>
+    </div>
+  </div>  
+</div>
+<div class="modal fade" id="edit-teacher-modal">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit New Teacher</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form name="teacherform"  id="teacher-form" method="POST"   >
+        
+          {% csrf_token %}
+          {% include 'app_query/form-fields-teacher.html'%} 
+   
+          <input type="type" name ="stuid" id ="stuid">
+
+          <input type="submit"  id="btn-save-add-teacher"  value ="save" class="btn btn-primary"  data-url="{% url 'app_query:add-edit-record-teacher-ajax' %} ">       
+
+          
+        </form>     
+
+        {% include 'include/error-messeges.html'%}   
+      </div>
+    </div>
+  </div>  
+</div>
+
+<div class="modal fade" id="delete-teacher-modal">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Delete Teacher</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form name="Delete-Teacher-Form"  id="deleteteacherform" method="POST"   >
+        
+          {% csrf_token %}
+          {% include 'app_query/form-fields-teacher.html'%} 
+   
+          <input type="type" name ="stuid" id ="stuid">
+
+          <input type="submit"  id="btn-delete-teacher"  value ="Delete" class="btn btn-primary"  data-url="{% url 'app_query:add-edit-record-teacher-ajax' %} ">       
+
+          
+        </form>     
+
+        {% include 'include/error-messeges.html'%}   
+      </div>
+    </div>
+  </div>  
+</div>
+
+
+<link rel="stylesheet" href="{% static 'css/app-query-classroom.css' %}">
+<script src="{% static 'js/app-query-classroom.js' %}" ></script>   
+
+
+
+{% endblock %}

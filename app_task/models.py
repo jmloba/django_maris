@@ -75,7 +75,8 @@ class TaskHistory(models.Model):
   revision=models.BooleanField(default=False)
   submitted=models.BooleanField(default=False)
   created=models.DateTimeField(auto_now_add=True, null=True)  
-
+  def __str__(self) :
+    return self.description
 
   def format_created (self):
     return self.created.strftime('%Y/%m/%d')
