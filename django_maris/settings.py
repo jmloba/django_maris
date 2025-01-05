@@ -5,6 +5,7 @@ from pathlib import Path
 import os
 from decouple import config
 import dj_database_url
+from rest_framework.authentication import TokenAuthentication
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,6 +29,7 @@ DEBUG = True
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -35,7 +37,14 @@ INSTALLED_APPS = [
     'app_task',
     'app_accounts',
     'app_query',
+    'api',
     
+    'app_manytomany',
+    
+
+    # 'app_todo',
+    'app_todo.apps.AppTodoConfig' ,
+
     # pip install pillow
     #pip install crispy-bootstrap5
     "crispy_forms",
@@ -43,12 +52,29 @@ INSTALLED_APPS = [
     #pip install django-formtools
     "formtools",
     #pip install djangorestframework
+    #pip install markdown  
+    # pip install django-filter
     'rest_framework',
+    'rest_framework.authtoken',
+
+    # third party app
+    # pip install django-rest-auth
+    'dj_rest_auth',
+
+
+    # pip install 'dj-rest-auth[with_social]'
     
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
+
     #  python -m pip install django-debug-toolbar
     #  "django.contrib.staticfiles",
     "debug_toolbar",     
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -59,6 +85,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'allauth.account.middleware.AccountMiddleware',
+
 ]
 
 ROOT_URLCONF = 'django_maris.urls'
@@ -161,7 +189,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR /'media'
 
-
+SITE_ID = 1
 # '''email setting  '''
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = config('EMAIL_PORT', cast=int)
@@ -170,6 +198,12 @@ EMAIL_HOST_PASSWORD =   config('EMAIL_PASSWORD')
 EMAIL_USE_TLS = True
 
 DEFAULT_FROM_EMAIL=config('DEFAULT_FROM_EMAIL')
+EMAIL_BACKEND =config('EMAIL_BACKEND') 
+
+# ACCOUNT_EMAIL_REQUIRED=config('ACCOUNT_EMAIL_REQUIRED') 
+# ACCOUNT_AUTHENTICATION_METHOD =config('ACCOUNT_AUTHENTICATION_METHOD') 
+# ACCOUNT_EMAIL_VERIFICATION= config('ACCOUNT_EMAIL_VERIFICATION')
+
 
 
 from django.contrib.messages import constants as messages
@@ -180,4 +214,16 @@ MESSAGE_TAGS = {
     messages.SUCCESS: 'alert-success',
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
+}
+# AUTH_USER_MODEL='account.Account'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES':
+       [
+       'rest_framework.authentication.TokenAuthentication',
+    ],
+    
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAdminUser'
+    ]
 }

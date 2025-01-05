@@ -1,0 +1,28 @@
+{% extends 'main/base.html'%}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+{%include 'include/user-info.html'%}
+<section id="studentAddRecord">
+  
+  <div class="body-area ">
+    <div>title</div>
+    <div class="add-form">
+      <form action = "{% url 'app_manytomany:StudentAddNewRecord'  %}" method = 'POST' novalidate>
+        {% csrf_token %}
+        {% include 'app_manytomany/form-fields-students.html' %}
+        <button class='btn-mybtn' id='btn-save-add-student' type='submit'  >Submit</button>
+      </form>
+  
+    </div>
+
+  </div>
+
+</section>  
+
+
+<script src="{% static 'js/app-query-enrollment.js' %}" ></script>   
+{% endblock %}
+

@@ -11,6 +11,7 @@ $(document).ready(function(){
     console.log('sss')
     $(".table-area").show();
   });  
+  //=============== =========== =============== ========== ===============
 
 
   function html_record_Task(x)  {
@@ -87,40 +88,67 @@ $(document).ready(function(){
   // click delete link
   $('#query-classroom main.table .table-body').on("click",".Task-link-delete",function(e){
     e.preventDefault()
-        console.log ('delete - link')
+    console.log ('delete - link')
     var  $this = $(this)
-    if (confirm('Are you sure you want to delete this record')){
-      $.ajax({
-        url :  $this.attr("href"),
-        type : 'GET',
-        dataType : 'json',
-        success : function(response){
-          if (response.message='success'){
-            x= response.data_list
-            html_template=html_record_Task(x)
-            $('#query-classroom .table-body').html(html_template)
-            swal('Data has been Deleted','Record has been deleted','success')
-
-          }
-
-        },
-        error : function(response){
-          console.log('something went wrong ...')
-
-        },
-
-
-
-      })
-
-    }
-
     
     
+    // if (confirm('Are you sure you want to delete this record')){
+    //   $.ajax({
+    //     url :  $this.attr("href"),
+    //     type : 'GET',
+    //     dataType : 'json',
+    //     success : function(response){
+    //       if (response.message='success'){
+    //         x= response.data_list
+    //         html_template=html_record_Task(x)
+    //         $('#query-classroom .table-body').html(html_template)
+    //         swal('Data has been Deleted','Record has been deleted','success')
+    //       }
+    //     },
+    //     error : function(response){
+    //       console.log('something went wrong ...')
+    //     },
+    //   })
+    // }
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        $.ajax({
+              url :  $this.attr("href"),
+              type : 'GET',
+              dataType : 'json',
+              success : function(response){
+                if (response.message='success'){
+                  x= response.data_list
+                  html_template=html_record_Task(x)
+                  $('#query-classroom .table-body').html(html_template)
+                  
+                  swal("Record has been deleted!", {
+                    icon: "success",
+                  });
+                }
+              },
+              error : function(response){
+                console.log('something went wrong ...')
+              },
+            })
 
+   
+      } else {
+        swal("Record deletion cancelled!!!");
+      }
+    });
+    
     return false
-
   })
+
+
   // click update link
   $('#query-classroom main.table .table-body').on("click",".Task-link-update",function(e){
     e.preventDefault()
@@ -217,4 +245,7 @@ $(document).ready(function(){
 
     console.log ('update modal submit clicked')
   });      
+//=============== =========== =============== ========== ===============
+ 
+
 });  

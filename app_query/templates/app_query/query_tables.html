@@ -46,10 +46,15 @@
                 <td data-cell="Start time">{{item.start_time|date:"H:i"}}</td>
                 <td data-cell="End time">{{item.end_time|date:"H:i"}}</td>
 
-                <td data-cell="delete button"><a href="{% url 'app_query:updateDelete-modal2' item.id %}" class="Task-link-delete text-danger" >Delete</a></td>
+                <td data-cell="delete button">
+                  <a href="{% url 'app_query:updateDelete-modal2' item.id %}" class="Task-link-delete text-danger">Delete</a>
+                </td>
 
-                <td data-cell="edit button"><a href="{% url 'app_query:updateDelete-modal2' item.id %}" class="Task-link-update text-danger"    data-date  = "{{item.task_date|date:'Y-m-d'}}"  data-start  = "{{item.end_time|date:'H:i'}}"   data-end  = "{{item.end_time|date:'H:i'}}"  data-stuid = "{{item.id}}"
-             >Edit</a></td>
+                <td data-cell="edit button">
+                  <a href="{% url 'app_query:updateDelete-modal2' item.id %}" class="Task-link-update text-danger"    data-date  = "{{item.task_date|date:'Y-m-d'}}"  data-start  = "{{item.end_time|date:'H:i'}}"   data-end  = "{{item.end_time|date:'H:i'}}"  data-stuid = "{{item.id}}">Edit
+
+                  </a>
+            </td>
 
               </tr>   
             {% endfor %}              

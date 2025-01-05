@@ -1,0 +1,71 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+{%include 'include/user-info.html'%}
+<section id="employee-dashboard">
+
+  <div class="body-area ">
+    <div class="table-area">
+      <main class="table employee-table">
+        <section class="table__header"> 
+          <div class="table-header">Employee Table</div>
+        </section>
+        <section class="table__body"> 
+          <table >
+            <caption> 
+              Employee  table caption
+            </caption>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Position</th>                
+
+              </tr>
+            </thead>
+            <tbody  id="tbody" 
+            class="table-body record">
+            {% for item in data_employee %}
+              <tr id="task-id-{{item.id}}">
+                <td data-cell="Name">{{item.emp_name}}</td>
+                <td data-cell="Email">{{item.emp_email}}</td>
+                <td data-cell="Gender">{{item.emp_gender}}</td>
+                <td data-cell="Position">{{item.emp_position}}</td>
+              </tr>   
+            {% endfor %}              
+            </tbody>
+  
+          </table>
+
+        </section>
+        <section class="add-record">
+        
+            <a href="{% url 'app_query:employeeAddRecord' %}">
+            <button 
+              class="btn-mybtn btn-danger btn-sm ">Add Task(task table)
+            </button>          
+            </a>
+        </section>
+
+        {% include 'include/error-messeges.html'%}
+      </main>
+  
+ 
+
+    </div>
+  </div>
+  
+</section>
+
+
+
+<link rel="stylesheet" href="{% static 'css/app-query-employee.css' %}">
+
+
+
+
+
+{% endblock %}

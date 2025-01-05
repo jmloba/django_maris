@@ -64,11 +64,52 @@
             <a href="{% url 'app_query:query-classroom' %}" class="sub-item">query Classroom</a>  
           </div>
           <div class="item ">
-            <a href="{% url 'app_query:queryTableModal' %}" class="sub-item">query Tables Modal</a>  
+            <a href="{% url 'app_query:queryTableModal' %}" class="sub-item">query tASK Tables Modal</a>  
           </div>
+          <div class="item ">
+            <a href="{% url 'app_query:queryAllModal' %}" class="sub-item">query All Tables Modal</a>  
+          </div>          
+          <div class="item ">
+            <a href="{% url 'app_query:employeeRelation' %}" class="sub-item">Enrollment - Many to Many</a>  
+          </div>          
 
         </div>
       </div>  
+       <!-- many to many -->
+      <div class="item ">
+        <a class="sub-btn">
+          <!-- inserting google icons material-symbols-outlined -->
+          <!-- <span class="material-symbols-outlined icon1-submenu">post_add</span> -->
+        &nbsp;
+        Programmers App_manyToMany
+          <i class="fas fa-angle-right dropdown"></i>
+        </a>
+        <div class="sub-menu">
+          <div class="item ">
+            <a href="{% url 'app_manytomany:StudentDashboard' %}" class="sub-item">Student Dashboard</a>  
+          </div> 
+   
+
+        </div>
+      </div>    
+      
+      <!-- restapi  -->
+      <div class="item ">
+        <a class="sub-btn">
+          <!-- inserting google icons material-symbols-outlined -->
+          <!-- <span class="material-symbols-outlined icon1-submenu">post_add</span> -->
+        &nbsp;
+        app_todo
+          <i class="fas fa-angle-right dropdown"></i>
+        </a>
+        <div class="sub-menu">
+          <div class="item ">
+            <a href="{% url 'app_todo:todo_dashboard' %}" class="sub-item">Todo Dashboard</a>  
+          </div> 
+   
+
+        </div>
+      </div>   
       {% endif%}  
           
              

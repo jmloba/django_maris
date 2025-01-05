@@ -1,0 +1,14 @@
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+<div class="row">
+  <div class="col-lg-6 col-sm-6">
+    {{form.title|as_crispy_field}}
+    {% for error in form.title.errors %}
+    <p><small class="alert-danger">{{ error }}</small></p>
+    {% endfor %}
+  </div>  
+</div>
+
+

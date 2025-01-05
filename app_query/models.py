@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 class Author(models.Model) :
     name = models.CharField(max_length=50) 
@@ -67,30 +68,6 @@ class Teacher(models.Model):
     def __str__(self):
         return self.name
 
-class Course(models.Model) :
-    course = models.CharField(max_length=50)   
-    def __str__(self):
-        return self.course
-    
-class Student(models.Model):
-    studno= models.CharField(max_length= 20, unique=True)
-    firstname = models.CharField(max_length= 50)
-    lastname = models.CharField(max_length= 50)
-    course = models.ForeignKey(Course, on_delete=models.SET_NULL, null = True, blank=True)
-    def __str__(self):
-        return f'{self.firstname} {self.lastname}'    
-class Classroom(models.Model):
-    name = models.CharField(max_length=300)
-    teacher = models.ForeignKey(Teacher, on_delete=models.SET_NULL, blank=True, null=True)
-
-    student = models.ManyToManyField('Student')
-    status = models.CharField(max_length=50)
-    def __str__(self):
-        return f'Classroom  {self.name} '    
-    def get_students(self):
-        return "\n".join([p.studno for p in self.student.all()])
-    
-
 class Task(models.Model):
     owner = models.CharField(max_length = 150)
     name = models.CharField(max_length = 150)
@@ -100,3 +77,23 @@ class Task(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)
         
+class Position(models.Model)    :
+    position_name = models.CharField(max_length=200, blank=True, null=True)
+    def __str__(self):
+        return self.position_name
+
+class Employee(models.Model):
+    gender_choices = [
+        ('Male','Male'),
+        ('Female','Female')
+    ]
+    emp_name = models.CharField(max_length=50, null=False, blank=False)
+    
+    emp_email = models.EmailField(null=True, blank=True)
+
+    emp_gender = models.CharField(choices=gender_choices, null=True, blank=True, max_length=50)
+
+    emp_position = models.ManyToManyField(Position, blank=True, )
+
+    def __str__(self):
+        return self.emp_name

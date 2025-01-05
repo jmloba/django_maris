@@ -1,0 +1,133 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+{%include 'include/user-info.html'%}
+<section id="query-ManyToMany">
+  <div class="button-area" >
+    <button id="btn-hide-all" class="btn btn-mybtn">Hide all</button>
+
+    <button id="btn-show-all" class="btn btn-mybtn">Show all</button>
+
+
+  </div>
+
+  <div class="body-area ">
+    <div class="table-area">
+      <main class="table Task-table">
+        <section class="table__header"> 
+          <div class="table-header">Task Table</div>
+        </section>
+        <section class="table__body"> 
+          <table >
+            <caption> 
+              Task table caption
+            </caption>
+            <thead>
+              <tr>
+                <th>student</th>
+                <th>Course</th>
+                <th>date_enrolled</th>
+
+              </tr>
+            </thead>
+            <tbody  id="tbody" 
+            class="table-body record">
+            {% for item in data_Enrollment %}
+              <tr id="task-id-{{item.id}}">
+                <td data-cell="Student">{{item.student}}</td>
+                <td data-cell="Course">{{item.course}}</td>
+                <td data-cell="Date Enrolled">{{item.date_enrolled|date:"Y-m-d"}}</td>
+              </tr>   
+            {% endfor %}              
+            </tbody>
+  
+          </table>
+
+        </section>
+        <section class="add-record">
+        
+            <!-- <button id="btn-add-enrollment" data-bs-toggle="modal" data-bs-target="#Enrollment-table-modal" class="btn-mybtn btn-danger btn-sm">Add Task(task table)
+            </button> -->
+            <a href="{% url 'app_query:EnrollmentAddRecord' %}">
+            <button 
+              class="btn-mybtn btn-danger btn-sm ">Add Task(task table)
+            </button>          
+            </a>
+        </section>
+
+        {% include 'include/error-messeges.html'%}
+      </main>
+  
+ 
+
+    </div>
+  </div>
+  
+</section>
+
+
+
+<!-- task table  add form -->
+<div class="modal fade" id="Enrollment-table-modal">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Enrollment</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form name="EnrollmentForm"  id="enrollment-form" method="POST"   >
+        
+          {% csrf_token %}
+          {% include 'app_query/form-fields-enrollment.html'%}
+          
+           
+   
+          <!-- <input type="text" name ="stuid" id ="stuid"> -->
+
+          <input type="submit"  id="btn-save-add-enrollment"  value ="save" class="btn btn-primary"  data-url="{% url 'app_query:EnrollmentAddRecord' %} ">       
+
+          
+        </form>     
+
+        {% include 'include/error-messeges.html'%}   
+      </div>
+    </div>
+  </div>  
+</div>
+<!-- task table  edit form -->
+<div class="modal fade" id="Enrollment-table-edit-modal">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Enrollment</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form name="Enrollmentform-Edit"  id="enrollment-form-edit" method="POST"  action="" >
+          {% csrf_token %}
+          {% include 'app_query/form-fields-enrollment.html'%}
+
+           
+          <input type="text" name ="stuid" id ="stuid">
+          <button type="submit" class="btn btn-primary btnUpdate">Update</button>
+        </form>     
+
+        {% include 'include/error-messeges.html'%}   
+      </div>
+    </div>
+  </div>  
+</div>
+
+
+<link rel="stylesheet" href="{% static 'css/app-query-manytomany.css' %}">
+
+
+
+
+
+{% endblock %}

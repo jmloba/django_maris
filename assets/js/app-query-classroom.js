@@ -24,61 +24,7 @@ $(document).ready(function(){
     }    
     return html_template
   };
-
-  // $('#edit-teacher-form').click(function(e){
-  //   e.preventDefault();  
-  //   console.log('edit teacher')
-  //   let csrf_token = $('input[name=csrfmiddlewaretoken]').val()
-
-  //   let name = $('#id_name').val()  
-  //   let url= $(this).attr('data-url');  
-  //   let id = $('#stuid').val()  
-
-  //   mydata={'name':name,
-  //     'id':id,
-  //     'csrfmiddlewaretoken': csrf_token,
-
-  //   }
-   
-  //   console.log ('name', name, 'id:',id)
-  //   if (name==''){
-  //     swal("Please enter Teacher's Name",'Name is required ','error')
-  //   }
-  //   else {
-  //     console.log('no error')
-      
-  //     $.ajax({
-  //       url: url,
-  //       method : 'POST',
-  //       data : mydata,
-
-  //       success: function(data){  
-  //         x= data.datalist
-  //         console.log('** success -->> name : ', x)
-  //         html_template=''
-
-
-  //         if (data.status=='Success'){
-  //           html_template=html_record(x)
-  //           $('.table-body.teacher-tbody').html(html_template)
-
-  //           $('#teacher-form')[0].reset()
-
-  //           swal('Data has been Saved','Record has been saved','success')
-  //           console.log('returned record ',x)
-  //           $("#add-teacher-form").modal("hide");
-            
-
-
-  //           // clear_data_entries()
-  //         }
-  //       }
-  //     });        
-
-
-  //   }  
-
-  // });         
+       
 
   $('#btn-save-add-teacher').click(function(e){
     e.preventDefault();  
@@ -126,9 +72,20 @@ $(document).ready(function(){
   })
   
 
-
+  $('#query-classroom main.table .table-body').on("click",".teacher-link-delete",function(e){
+    e.preventDefault()
+    console.log('delete link pressed')
 
   
+  })
+  
+  $('#query-classroom main.table .table-body').on("click",".teacher-link-update",function(e){
+    e.preventDefault()
+    console.log('UPDATE link pressed')
+
+  
+})
+
 
 
 })

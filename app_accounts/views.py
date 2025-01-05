@@ -8,6 +8,10 @@ from app_accounts.utils import send_verification_email
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import  urlsafe_base64_decode 
 
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
 @unauthenticated_user
 def login_view(request):
   if request.method=='POST':

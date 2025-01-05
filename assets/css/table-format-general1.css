@@ -12,8 +12,8 @@ main.table{
 background-color: rgba(230, 238, 173, 0.233) !important;
   
   /* width : 98vh; */
-  height : 70vh;
-  /* max-height: 80vh; */
+  height : 50vh;
+  max-height: 80vh;
   
   backdrop-filter: blur(7px);
   box-shadow: 2px 5px 10px rgb(46, 46, 243);
@@ -80,7 +80,7 @@ td img{
 }
 table,th,td{
   border-collapse: collapse;
-  text-align: left !important ;
+  text-align: left ;
   
 }
 
@@ -152,62 +152,42 @@ td.task-desc{
 
 }
 @media (max-width:700px) {
-  th{
+  table thead {
     display : none;
   }
+  
+  table tbody,
   table tr,
   table td{
-    display: block;
+    display : block;
     width : 100%;
-
   }
-  table tr{
-    margin-bottom : 1rem;
-    display : block;
+  table caption{
+    width: 100%;
   }
-
-  table  td {
-    text-align: right;        
-    display : block;
-    /* position : relative; */
+  table tbody tr td{
     
-    /* padding-left: 50%; */
-
-    
-    
+    text-align : right;
+    padding-left: 50%; 
+    text-align: right;
+    position : relative;
   }
-
-/*   
-  table  tbody tr td::before{
-    content : attr(data-cell)" : ";
+  table tbody tr td::before{
+    content : attr(data-cell) ':';
     position : absolute;
-    text-transform: capitalize;
-    left:0;
-    
-    
-    color : black;
-    width : 50%;
-    text-align: left;
-
-
-    
-  }  */
- 
-  td p.status{
-    margin : 2em 1em;
-     right:0;
-
-
+    left :0;
+    width : 30%;
+    padding-left : 15px;
+    text-align:left;
   }
- .table-col-desc{
-  
-  height: max-content !important;
- }
+  main.table{
+    height :70vh;
+    max-height: 90vh;
+  }
 
- 
+  
+
+
+
 
 }
-
-
-
-

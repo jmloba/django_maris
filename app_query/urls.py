@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import include, re_path,path
 from app_query import views
-from .views import UpdateDeleteTeacher_ajax, updateDelete_modal2
+from .views import UpdateDeleteTeacher_ajax, updateDelete_modal2,queryall_updatedelete_task 
 
 
 
@@ -33,8 +33,22 @@ urlpatterns = [
   path('UpdateDelete-modal/',views.TaskAddEditRecord, 
   name='UpdateDelete-modal'),
 
-  path('updateDelete-modal2/<int:pk>/',updateDelete_modal2.as_view(), 
+  path('updateDelete-modal2/<int:pk>',updateDelete_modal2.as_view(), 
   name='updateDelete-modal2'),
+
+  path('queryAllModal/',views.queryAllTableModal, 
+  name='queryAllModal'),
   
+  path('queryall_updatedelete_task/<int:pk>',queryall_updatedelete_task.as_view(), 
+  name='queryall_updatedelete_task'),  
+  
+# many to many
+  path('employeeRelation/',views.employeeRelation, 
+  name='employeeRelation'),  
+  path('employeeAddRecord/',views.employeeAddRecord, 
+  name='employeeAddRecord'), 
+
+
+
   
 ]

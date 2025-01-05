@@ -1,0 +1,28 @@
+{% extends 'main/base.html'%}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+{%include 'include/user-info.html'%}
+<section id="query-manytomany-addrecord">
+  
+  <div class="body-area ">
+    <div>title</div>
+    <div class="add-form">
+      <form method = 'POST' novalidate>
+        {% csrf_token %}
+        {% include 'app_query/form-fields-enrollment.html' %}
+        <button class='btn-mybtn' id='btn-save-add-enrollment' type='submit' data-url="{% url 'app_query:saveEnrollmentAddRecord' %}" >Submit</button>
+      </form>
+  
+    </div>
+
+  </div>
+
+</section>  
+
+
+<script src="{% static 'js/app-query-enrollment.js' %}" ></script>   
+{% endblock %}
+

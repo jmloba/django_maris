@@ -1,0 +1,38 @@
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+<div class="row">
+  <div class="col-lg-6 col-sm-6">
+    {{form.emp_name|as_crispy_field}}
+    {% for error in form.student.errors %}
+    <p><small class="alert-danger">{{ error }}</small></p>
+    {% endfor %}
+  </div>  
+  <div class="col-lg-6 col-sm-6">
+    {{form.emp_email|as_crispy_field}}
+    {% for error in form.emp_email.errors %}
+    <p><small class="alert-danger">{{ error }}</small></p>
+    {% endfor %}
+  </div>
+</div>
+
+ <div class="row">
+  <div class="col-lg-12 col-sm-12">
+    {{form.emp_gender|as_crispy_field}}
+    {% for error in form.emp_gender.errors %}
+    <p><small class="alert-danger">{{ error }}</small></p>
+    {% endfor %}
+
+  </div>  
+ </div>
+
+ <div class="row">
+  <div class="emp-position col-lg-12 col-sm-12 ">
+    {{form.emp_position|as_crispy_field}}
+    {% for error in form.emp_position.errors %}
+    <p><small class="alert-danger">{{ error }}</small></p>
+    {% endfor %}
+
+  </div>  
+ </div>

@@ -1,0 +1,46 @@
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+<div class="row">
+  <div class="col-lg-6 col-sm-6">
+    {{form.studno|as_crispy_field}}
+    {% for error in form.studno.errors %}
+    <p><small class="alert-danger">{{ error }}</small></p>
+    {% endfor %}
+  </div>  
+
+  <div class="col-lg-6 col-sm-6">
+    {{form.name|as_crispy_field}}
+    {% for error in form.name.errors %}
+    <p><small class="alert-danger">{{ error }}</small></p>
+    {% endfor %}
+  </div>
+</div>
+
+ <div class="row">
+  <div class="col-lg-6 col-sm-12">
+    {{form.grade|as_crispy_field}}
+    {% for error in form.grade.errors %}
+    <p><small class="alert-danger">{{ error }}</small></p>
+    {% endfor %}
+
+  </div>  
+  <div class="emp-position col-lg-6 col-sm-12 ">
+    {{form.birthdate|as_crispy_field}}
+    {% for error in form.birthdate.errors %}
+    <p><small class="alert-danger">{{ error }}</small></p>
+    {% endfor %}
+
+  </div>    
+ </div>
+
+ <div class="row">
+  <div class="col-lg-12 col-sm-12">
+    {{form.modules|as_crispy_field}}
+    {% for error in form.modules.errors %}
+    <p><small class="alert-danger">{{ error }}</small></p>
+    {% endfor %}
+
+  </div>  
+</div>  

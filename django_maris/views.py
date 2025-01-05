@@ -5,6 +5,10 @@ from django.utils.timezone import localdate
 from django.db.models import Sum,Count
 from app_task.models import TaskTable
 
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+
 # @login_required(login_url='app_accounts:login-view')
 def home(request):
   totalrecords=len(TaskTable.objects.all())
@@ -15,3 +19,24 @@ def home(request):
   
   context = {'totalrecords':totalrecords  }
   return render(request,'home.html',context )
+
+@api_view(['POST'])
+def login(request):
+  print(f'test login ***')
+  response= {}
+  return Response(response)
+
+
+@api_view(['POST'])
+def signup(request):
+  print(f'test signp ***')
+  response= {}
+  return Response(response)
+
+@api_view(['POST'])
+def test_token(request):
+  print(f'test token')
+  response= {}
+  return Response(response)
+
+

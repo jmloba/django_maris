@@ -1,8 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from app_query.models import Customer,Product,LineItem, Order, Book,Store, Author, Posts, Teacher,Course,Student,Classroom, Task
-
+from app_query.models import Customer,Product,LineItem, Order, Book,Store, Author, Posts, Teacher, Task , Employee, Position
 
 class CustomerAdmin(admin.ModelAdmin):
   list_display=('first_name','last_name','address','city','postcode','email')
@@ -75,43 +74,36 @@ class TeacherAdmin(admin.ModelAdmin):
   list_filter =()
   fieldsets=()   
 
-class CourseAdmin(admin.ModelAdmin):  
-  list_display=('course',)
-  ordering=('course',)
-  list_editable =()
-  filter_horizontal=()
-  list_filter =()
-  fieldsets=()   
-class StudentAdmin(admin.ModelAdmin):  
-  list_display=('studno','firstname','lastname','course')
-  ordering=('studno',)
-  list_editable =()
-  filter_horizontal=()
-  list_filter =()
-  fieldsets=()  
 
-class ClassroomAdmin(admin.ModelAdmin):  
-  list_display=('name','teacher','status','get_students')
-  ordering=('name',)
-  list_editable =()
-  filter_horizontal=()
-  list_filter =()
-  fieldsets=()    
 
 class TaskAdmin(admin.ModelAdmin):  
-  list_display=('owner','name','start_time','end_time','created_at', 'updated_at')
+  list_display=('owner','name','start_time','end_time','created_at', 'updated_at',)
   ordering=('name',)
   list_editable =('name','start_time','end_time',)
   filter_horizontal=()
   list_filter =()
-  fieldsets=()            
+  fieldsets=()           
+
+
+class PositionAdmin(admin.ModelAdmin):  
+  list_display=('position_name',)
+  ordering=('position_name',)
+  list_editable =()
+  filter_horizontal=()
+  list_filter =()
+  fieldsets=()      
+
+# class EmployeeAdmin(admin.ModelAdmin):  
+#   list_display=('emp_name','emp_email','emp_gender')
+#   ordering=('emp_name',)
+#   list_editable =()
+#   filter_horizontal=()
+#   list_filter =()
+#   fieldsets=()      
+
 
 admin.site.register(Task, TaskAdmin)  
 admin.site.register(Teacher, TeacherAdmin)  
-admin.site.register(Course, CourseAdmin)  
-admin.site.register(Student, StudentAdmin)  
-admin.site.register(Classroom, ClassroomAdmin)  
-
 admin.site.register(Customer, CustomerAdmin)  
 admin.site.register(Product, )  
 admin.site.register(Order, )  
@@ -123,4 +115,5 @@ admin.site.register(Book, )
 admin.site.register(Store,)  
 admin.site.register(Author,AuthorAdmin )
 admin.site.register(Posts,PostsAdmin )  
-# admin.site.register(LineItem, LineItemAdmin)  
+admin.site.register(Employee, )
+admin.site.register(Position,PositionAdmin)  

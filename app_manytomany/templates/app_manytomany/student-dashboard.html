@@ -1,0 +1,112 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+{%include 'include/user-info.html'%}
+<section id="student-dashboard">
+  <div class="button-area" >
+    <button id="btn-hide-all" class="btn btn-mybtn">Hide all</button>
+
+    <button id="btn-show-all" class="btn btn-mybtn">Show all</button>
+
+
+  </div>
+
+  <div class="body-area ">
+    <div class="table-area">
+      <main class="table Task-table">
+        <section class="table__header"> 
+          <div class="table-header">Task Table</div>
+        </section>
+        <section class="table__body"> 
+          <table >
+            <caption> 
+              Student table caption
+            </caption>
+            <thead>
+              <tr>
+                <th>Student #</th>
+                <th>Name</th>
+                <th>grade</th>
+                <th>Date of Birth</th>      
+                <th>View Modules</th>      
+                          
+
+              </tr>
+            </thead>
+            <tbody  id="tbody" 
+            class="table-body record">
+            {% for item in Student_data %}
+              <tr id="task-id-{{item.id}}">
+                <td data-cell="Student No. ">{{item.studno}}</td>
+                <td data-cell="Name">{{item.name}}</td>   
+                <td data-cell="Grade">{{item.grade}}</td>                
+                <td data-cell="Birth DAte">{{item.birthdate}}</td>                
+                <td data-cell="Action">
+                  <button class="btn btn-info btn-sm">
+                    <a id='button-view-id' class="view-data" data-stuid="{{item.id}}"  data-url="{% url 'app_manytomany:view-relate' item.id %}"
+                    >
+                      <i class="fa-regular fa-file"></i>
+                    </a>
+                    </button>
+                </td>                
+                
+              </tr>   
+            {% endfor %}              
+            </tbody>
+  
+          </table>
+
+        </section>
+        <section class="add-record">
+        
+            <!-- <button id="btn-add-enrollment" data-bs-toggle="modal" data-bs-target="#Enrollment-table-modal" class="btn-mybtn btn-danger btn-sm">Add Task(task table)
+            </button> -->
+            <a href="{% url 'app_manytomany:StudentAddNewRecord' %}">
+            <button 
+              class="btn-mybtn btn-danger btn-sm ">Add Task(task table)
+            </button>          
+            </a>
+        </section>
+
+        {% include 'include/error-messeges.html'%}
+      </main>
+  
+ 
+
+    </div>
+  </div>
+  
+</section>
+
+
+
+<!-- task table  add form -->
+<div class="modal fade" id="StudentView-table-modal">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Enrollment</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        tableview
+
+        
+
+        {% include 'include/error-messeges.html'%}   
+      </div>
+    </div>
+  </div>  
+</div>
+<!-- task table  edit form -->
+
+
+<link rel="stylesheet" href="{% static 'css/app-query-manytomany.css' %}">
+
+<script src="{% static 'js/app-manytomany-viewdata.js' %}" ></script>   
+
+
+
+{% endblock %}

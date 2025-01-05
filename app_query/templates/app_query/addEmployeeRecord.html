@@ -1,0 +1,28 @@
+{% extends 'main/base.html'%}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+{%include 'include/user-info.html'%}
+<section id="employee-add-record">
+  
+  <div class="body-area ">
+    <div>title</div>
+    <div class="add-form">
+      <form method = 'POST' novalidate>
+        {% csrf_token %}
+        {% include 'app_query/form-fields-employee.html' %}
+        <button class='btn-mybtn' id='btn-save-add-enrollment' type='submit' >Submit</button>
+      </form>
+  
+    </div>
+
+  </div>
+
+</section>  
+
+<link rel="stylesheet" href="{% static 'css/app-query-employee.css' %}">
+<script src="{% static 'js/app-query-employee.js' %}" ></script>   
+{% endblock %}
+

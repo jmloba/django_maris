@@ -8,6 +8,7 @@ notes2.txt
 notes/
 media/
 ab/
+test.rest
 
 ### Django ###
 *.log

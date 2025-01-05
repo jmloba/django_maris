@@ -1,0 +1,105 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+{%include 'include/user-info.html'%}
+<section id="todo-dashboard">
+  <div class="button-area" >
+    <button id="btn-hide-all" class="btn btn-mybtn">Hide all</button>
+
+    <button id="btn-show-all" class="btn btn-mybtn">Show all</button>
+
+
+  </div>
+
+  <div class="body-area ">
+    <div class="table-area">
+      <main class="table Teacher-table">
+        <section class="table__header"> 
+          <div class="table-header">Task Table</div>
+        </section>
+        <section class="table__body"> 
+          <table >
+            <caption> 
+              Todo table caption
+            </caption>
+            <thead>
+              <tr>
+                <th>title</th>
+                <th>completed</th>
+  
+              </tr>
+            </thead>
+            <tbody  id="tbody" 
+            class="table-body record">
+            {% for item in todo_data %}
+              <tr id="task-id-{{item.id}}">
+                <td data-cell="Owner">{{item.title}}</td>
+                <td data-cell="Name">{{item.completed}}</td>
+    
+             
+
+              </tr>   
+            {% endfor %}              
+            </tbody>
+  
+          </table>
+
+        </section>
+        <section class="add-teacher">
+        
+            <button id="btn-add-teacher" data-bs-toggle="modal" data-bs-target="#Todo-table-modal" class="btn-mybtn btn-danger btn-sm">Add Todo(task table)
+            </button>
+        
+        </section>
+
+        {% include 'include/error-messeges.html'%}
+      </main>
+  
+ 
+
+    </div>
+  </div>
+  
+</section>
+
+
+
+<!-- task table  add form -->
+<div class="modal fade" id="Todo-table-modal">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Task</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form name="Todo-Form"  id="todo-form" method="POST"   >
+        
+          {% csrf_token %}
+          {% include 'app_todo/form-fields-todo.html'%} 
+   
+          <!-- <input type="text" name ="stuid" id ="stuid"> -->
+
+          <input type="submit"  id="btn-save-add-todo"  value ="save" class="btn btn-primary"  data-url="{% url 'app_todo:TodoAddRecord' %} ">       
+
+          
+        </form>     
+
+        {% include 'include/error-messeges.html'%}   
+      </div>
+    </div>
+  </div>  
+</div>
+
+
+
+<link rel="stylesheet" href="{% static 'css/app-todo-dashboard.css' %}">
+
+<script src="{% static 'js/app-todo-dashboard.js' %}" ></script>   
+
+
+
+{% endblock %}

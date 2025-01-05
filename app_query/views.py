@@ -1,16 +1,19 @@
-from django.db import connection
+from django.db import IntegrityError, connection
 from django.db.models import F,Q,Sum, Avg, Prefetch
 from django.shortcuts import HttpResponse
+from django.views.generic import FormView
 
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render,redirect
 from app_task.models import TaskTable, MFO, MFOsub,MFOsub2, TaskHistory
 
-from app_query.models import Order,Customer,Product,LineItem, Book, Store, Posts, Author, Teacher,Classroom,Course,Student, Task
+from app_query.models import Order,Customer,Product,LineItem, Book, Store, Posts, Author, Teacher, Task, Employee
 
 from django.views import  View
 from app_task.forms import TaskTableForm
-from app_query.forms import TeacherForm , TaskForm
+from app_query.forms import TeacherForm , TaskForm, EmployeeForm
+#, EnrollmentForm
+
 from datetime import datetime
 
 from django.contrib import messages 
@@ -18,17 +21,24 @@ from django.views.decorators.csrf import csrf_exempt
 # from app_query.utils import is_ajax
 
 # Create your views here.
+from app_query.serializers import TaskTableSerializer
 
 from rest_framework.generics import CreateAPIView, ListAPIView
 
 def is_ajax(request):
     return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 
+
+
 def query_Dashboard(request):
   data = TaskTable.objects.filter(user=request.user).order_by('mfo','mfosub','mfosub2')
+  serializer = TaskTableSerializer(data)
+
   form = TaskTableForm()
   context={'data':data,'form':form}
   return render(request,'app_query/query_Dashboard.html', context)
+
+
 
 def create_taskref(request):
   ref=str(request.user)+'-'+str(datetime.now())
@@ -71,7 +81,7 @@ def create_record_modal_qtest(request):
       data=TaskTable.objects.all()
       context={'data':data, 'form':form }
 
-      return redirect('app_query:query-dashboard', )
+      return redirect('app_query:squery-dashboard', )
 
 # union example
 def query_tasktable(request):
@@ -254,7 +264,7 @@ class updateDelete_modal2(View):
       data={
         "owner": task.owner,
         "name" : task.name,
-        "tassk_date" : task.task_date,
+        "task_date" : task.task_date,
         "start_time" : task.start_time,
         "end_time" : task.end_time
       }
@@ -270,7 +280,7 @@ class updateDelete_modal2(View):
 
           task.owner= owner
           task.name = name
-          task.task_dtae = task_date
+          task.task_date = task_date
           task.start_time = start_time
           task.end_time = end_time
           task.save()
@@ -296,7 +306,100 @@ class updateDelete_modal2(View):
     response = {'message':'wrong request'}
     return JsonResponse(response)
 
+def queryAllTableModal(request):
+
+  task_table = Task.objects.all()
+  task_form = TaskForm()
+
+
+  context={'task_table':task_table,'task_form':task_form}
+  return render(request,'app_query/query_all_tables.html', context)
+
+class queryall_updatedelete_task(View):  
+  form_class = TaskForm
+
+  def get(self, request,pk,*args,**kwargs):
+    if is_ajax(request):
+      task = Task.objects.get(pk=pk)
+      task.delete()
+      data_list = data_list_Task()
+      response = {'message': 'success','data_list':data_list}
+      return JsonResponse(response)
+    else:
+      response = {'message': 'wrong route'}
+      return JsonResponse(response)
+      
+  def post(self,request,pk, *args, **kwargs):
+    if is_ajax(request):
+      task = Task.objects.get(pk=pk)
+      data={
+        "owner": task.owner,
+        "name" : task.name,
+        "task_date" : task.task_date,
+        "start_time" : task.start_time,
+        "end_time" : task.end_time
+      }
+
+      form = self.form_class(request.POST)
+      if form.is_valid():
+        owner = form.cleaned_data['owner']
+        name = form.cleaned_data['name']
+        task_date = form.cleaned_data['task_date']
+        start_time = form.cleaned_data['start_time']
+        end_time = form.cleaned_data['end_time']
+        if form.has_changed():
+
+          task.owner= owner
+          task.name = name
+          task.task_date = task_date
+          task.start_time = start_time
+          task.end_time = end_time
+          task.save()
+
+
+          data_list=data_list_Task()
+
+          response = {'message':'success', 'data_list':data_list}
+          return JsonResponse(response)
+        else:
+          response = {'message':'data is not edited'}
+          return JsonResponse(response)
+
+
+      response ={'message': 'invalid form, Validation failed, wong request'}
+      return JsonResponse(response)
+    else :
+      print('request is not ajax')
 
 
 
+      
+    response = {'message':'wrong request'}
+    return JsonResponse(response)
   
+
+#--- many to many
+
+def employeeRelation(request):
+
+  data_employee = Employee.objects.all()
+  for i in data_employee:
+    print(f'employee name : {i.emp_name}')
+    for  position in i.emp_position.all():
+      print(f'employee position : {position}')
+
+
+  context={'data_employee':data_employee}
+  return render(request,'app_query/dashboard-employee.html', context)
+
+def employeeAddRecord(request):
+    form = EmployeeForm()
+    if request.method=='POST':
+      form=EmployeeForm(request.POST or None)
+      if form.is_valid():
+        form.save()
+        return redirect('app_query:employeeRelation')
+
+
+    context = {'form': form}
+    return render(request,'app_query/addEmployeeRecord.html', context)
